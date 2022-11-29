@@ -38,12 +38,10 @@ const createUserAndSession = async (req, res) => {
 };
 
 const checkUserAndCreateSession = async (req, res) => {
-  console.log('req.body =================', req.body)   
   const { login, password, role } = req.body;
   try {
     if (role === 'babushkagram') {
       const findBabushka = await Grandparent.findOne({ where: { login }})
-      console.log('findBabushka =================', findBabushka)   
       const isPasswValid = await bcrypt.compare(password, findBabushka.password);
       if (isPasswValid) {
         req.session.user = { id: findBabushka.id, name: findBabushka.name, help: findBabushka.help  }; 
@@ -57,7 +55,6 @@ const checkUserAndCreateSession = async (req, res) => {
     }
     if (role === 'vnukogram') {
       const findVnuk = await Grandchild.findOne({ where: { login }})
-      // console.log('findBabushka =================', findBabushka)   
       const isPasswValid = await bcrypt.compare(password, findVnuk.password);
       if (isPasswValid) {
         req.session.user = { id: findVnuk.id, name: findVnuk.name }; 

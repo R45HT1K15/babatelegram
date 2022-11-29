@@ -1,6 +1,6 @@
 const React = require('react');
 
-function Layout({title, children}) {
+function Layout({ children }) {
 return (
 <html lang='en'>
 
@@ -22,15 +22,15 @@ return (
   {/* <></> */}
   {/* для неавторизованного пользователя */}
   <header>
-    <h2>Добро пожаловать в Babushkogram</h2>
+    <h2>Добро пожаловать в Babushkagram</h2>
   </header>
   <div className='container'>{children}</div>
   <footer>
     {/* для бабки */}
     <div className="btn-group" id='blackwood' role="group"  aria-label="Basic mixed styles example">
-      <a href="/babushkogram" id="left" className="btn"><button className="btn" type="button">Все фотокарточки</button></a>
-      <a href="/babuskogram/newPhoto" id="middle"  className="btn"><button className="btn" type="button">Выложить фотокарточку</button></a>
-      <a href="/babushkogram/profile" id="right" className="btn"><button className="btn" type="button">Мой профиль</button></a>
+      <a href="/babushkagram" id="left" className="btn"><button className="btn" type="button">Все фотокарточки</button></a>
+      <a href="/babuskagram/newPhoto" id="middle"  className="btn"><button className="btn" type="button">Выложить фотокарточку</button></a>
+      <a href="/babushkagram/profile" id="right" className="btn"><button className="btn" type="button">Мой профиль</button></a>
     </div>
     {/* для внука */}
     {/* <div className="btn-group" id='blackwood' role="group"  aria-label="Basic mixed styles example">

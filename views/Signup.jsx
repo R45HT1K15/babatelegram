@@ -12,7 +12,7 @@ return (
       <div className="mb-3">
         <label htmlFor="fio" className="form-label">Ф.И.О.</label>
         <input className="form-control" type="text" id='fio' name='fio' placeholder='Третьякова Картина Галереевна' required
-          pattern="[A-Za-zА-Яа-яёЁ]+" title="Пишите все, кроме цифр!" />
+          pattern="[A-Za-zА-Яа-яёЁ\s]+" title="Пишите все, кроме цифр!" />
         <div id="passwordHelpBlock" className="form-text">
           Используйте свои настоящие ФИО, чтобы Ваши подруги и друзья могли узнать вас.
         </div>
@@ -20,7 +20,7 @@ return (
       <div className="mb-3">
         <label htmlFor="login">Логин:</label>
         <input className="form-control" type="text" id='login' name='login' placeholder='kartina1953' required
-          pattern="[A-Za-z0-9]\w+" title="Латинские буквы и цифры!" />
+          pattern="[A-Za-z0-9]+" title="Латинские буквы и цифры!" />
         <div id="passwordHelpBlock" className="form-text">
           Логин вы будете использовать, когда будете заходить на сайт. Запишите обязательно в блокнот и не потеряйте.
         </div>
