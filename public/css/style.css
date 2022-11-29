@@ -4,6 +4,13 @@
     margin-right: auto;
     margin-left: auto;
   }
+  footer {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    margin-left: 50%;
+    transform: translate(-50%, 0)
+  }
   @media (min-width: 768px) {
     .container {
       width: 750px;
