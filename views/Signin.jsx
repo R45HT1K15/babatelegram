@@ -1,12 +1,13 @@
 const React = require('react');
 const Layout = require('./Layout');
 
-module.exports = function Signin() {
+module.exports = function Signin({error}) {
   return (
     <Layout>
       <div className='wrapper'>
         <h2>Добро пожаловать в Babushkogram</h2>
         <h3>Вход</h3>
+        {error && (<h4> Неправильно введен логин или пароль</h4>)}
         <form action='/signin' method='POST'>
           <div>
             <label htmlFor="login">Введите логин:</label>
@@ -36,10 +37,13 @@ module.exports = function Signin() {
               id="role"
               required
             >
-              <option value="granparant">Бабушка(дедушка)</option>
-              <option value="grandchild">Внучка(внук)</option>
+              <option value="babushkagram">Бабушка(дедушка)</option>
+              <option value="vnukogram">Внучка(внук)</option>
               </select>
           </div>
+          <a href="/babushkagram" id='reg'>
+        <button type="submit" class="btn btn-outline-success btn-lg"> Зарегистрироваться</button>
+      </a>
         </form>
       </div>
     </Layout>

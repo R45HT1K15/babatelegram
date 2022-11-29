@@ -6,7 +6,7 @@ const BabushkaPhotoEdit = require('../views/BabushkaPhotoEdit');
 const BabushkaProfile = require('../views/BabushkaProfile');
 
 exports.babushkagram = (req, res) => {
-    render(Babushkagram, {}, res);
+    render(Babushkagram, { }, res);
 }
 
 exports.babushkaNewPhoto = (req, res) => {
