@@ -1,11 +1,12 @@
 const React = require('react');
 const Layout = require('./Layout');
 
-module.exports = function Signup() {
+module.exports = function Signup( { error }) {
 return (
 <Layout>
   <div className='wrapper'>
     <h3>Регистрация</h3>
+    { error && (<h4>Пользователь с таким логином существует</h4>)}
     <a href="/"><button type="button" className="btn-close" aria-label="Закрыть"></button></a>
     <form action='/signup' method='POST'>
       <div className="mb-3">

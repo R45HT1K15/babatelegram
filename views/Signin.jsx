@@ -1,11 +1,12 @@
 const React = require('react');
 const Layout = require('./Layout');
 
-module.exports = function Signin() {
+module.exports = function Signin({error}) {
 return (
 <Layout>
   <div className='wrapper'>
     <h3>Вход</h3>
+    {error && (<h4> Неправильно введен логин или пароль</h4>)}
     <a href="/"><button type="button" className="btn-close" aria-label="Закрыть"></button></a>
     <form action='/signin' method='POST'>
       <div className="mb-3">
