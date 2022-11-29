@@ -4,13 +4,70 @@
     margin-right: auto;
     margin-left: auto;
   }
+  .form-control, .form-select{
+    background-color: rgb(255, 214, 180);
+    width: 600px;
+    height: 50px;
+  }
+  option{
+    background-color: rgb(250, 231, 177);
+  }
+  .btn {
+    background-color: rgb(252, 180, 98);
+    border: none;
+    font-size: 24px;
+  }
+  .form-text {
+    width: 600px;
+    font-size: 20px;
+  }
+  .btn-close {
+    position: absolute;
+    margin-left: 250px;
+    margin-top: -40px;
+    scale: 0.6;
+  }
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  body {
+    font-size: 30px;
+    background-color: rgb(255, 248, 231);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .mainPage {
+    display: flex;
+    justify-content: space-between;
+  }
+  .authBtns {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
   footer {
     display: flex;
     position: fixed;
     bottom: 0;
-    margin-left: 50%;
-    transform: translate(-50%, 0)
   }
+  .reg, .log{
+    width: 150px;
+  }
+  #middle{
+    border-right: 3px solid black;
+    border-left: 2px solid black;
+  }
+  #left {
+    border-radius: 15px 0px 0px 0px;
+  }
+  #right {
+    border-radius: 0px 15px 0px 0px;
+  }
+
   @media (min-width: 768px) {
     .container {
       width: 750px;

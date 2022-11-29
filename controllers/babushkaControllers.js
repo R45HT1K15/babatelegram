@@ -17,6 +17,7 @@ exports.babushkagram = async (req, res) => {
     } catch (error) {
         console.log('\x1b[31m', 'Error', error);
     }
+
 }
 
 exports.babushkaNewPhoto = (req, res) => {
