@@ -27,13 +27,13 @@ return (
   <div className='container'>{children}</div>
   <footer>
     {/* для бабки */}
-    <div class="btn-group" id='blackwood' role="group"  aria-label="Basic mixed styles example">
+    <div className="btn-group" id='blackwood' role="group"  aria-label="Basic mixed styles example">
       <a href="/babushkogram" id="left" className="btn"><button className="btn" type="button">Все фотокарточки</button></a>
       <a href="/babuskogram/newPhoto" id="middle"  className="btn"><button className="btn" type="button">Выложить фотокарточку</button></a>
       <a href="/babushkogram/profile" id="right" className="btn"><button className="btn" type="button">Мой профиль</button></a>
     </div>
     {/* для внука */}
-    {/* <div class="btn-group" id='blackwood' role="group"  aria-label="Basic mixed styles example">
+    {/* <div className="btn-group" id='blackwood' role="group"  aria-label="Basic mixed styles example">
       <a href="/vnukogram" id="left" className="btn"><button className="btn" type="button">Фотки бабули</button></a>
       <a href="/vnukogram/likes" id="middle" className="btn"><button className="btn" type="button">Лайкнутые фотки</button></a>
       <a href="/vnukogram/profile" id="right" className="btn"><button className="btn" type="button">Мой профиль</button></a>
