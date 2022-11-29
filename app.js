@@ -37,8 +37,8 @@ app.use(session(sessionConfig));
 
 //роутеры
 app.use('/', indexRoutes); //обработка main, signin, signup, logout
-app.use('/babushkagram', babushkaRoutes); //обработка newPhoto, profile/:id, profile/:id/:imageid 
-app.use('/vnukogram ', vnukRoutes); // обработка likes, profile
+// app.use('/babushkagram', babushkaRoutes); //обработка newPhoto, profile/:id, profile/:id/:imageid 
+// app.use('/vnukogram ', vnukRoutes); // обработка likes, profile
 
 const PORT = process.env.PORT || 3100;
 app.listen(PORT, (err) => {

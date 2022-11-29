@@ -1,14 +1,20 @@
 const React = require('react');
 const Layout = require('./Layout');
 
-function Index({title}) {
+module.exports = function Index() {
   return (
     <Layout>
-      <div>
-        <h2>{title}</h2>
-      </div>
+       <div className='wrapper'>
+          <h2>Добро пожаловать в Babushkogram</h2>
+          <a href="/signup"><button>Регистрация</button></a>
+          <a href="/signin"><button>Войти</button></a>
+          <h3>Подробнее о сайте</h3>
+          <div>
+            <div>
+              что-то о сайте
+            </div>
+          </div>
+        </div>
     </Layout>
   );
 }
-
-module.exports = Index;
