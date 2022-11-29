@@ -18,6 +18,7 @@ const babushkaRoutes = require('./routes/babushkaRoutes');
 dbCheck();
 
 app.use(express.static(path.resolve('public')));
+console.log('path.resolve(\'public\')', path.resolve('public'))
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
