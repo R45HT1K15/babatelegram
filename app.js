@@ -41,7 +41,13 @@ app.use(session(sessionConfig));
 //роутеры
 app.use('/', indexRoutes); //обработка main, signin, signup, logout
 app.use('/babushkagram', babushkaRoutes); //обработка newPhoto, profile/:id, profile/:id/:imageid 
-app.use('/vnukogram ', vnukRoutes); // обработка likes, profile
+app.use('/vnukogram', vnukRoutes); // обработка likes, profile
+
+// const { Picture } = require('./db/models')
+// app.get('/ad', async (req, res) => {
+//   const picture = await Picture.findAll()
+//   console.log('picture==================================', picture)
+// })
 
 const PORT = process.env.PORT || 3100;
 app.listen(PORT, (err) => {
