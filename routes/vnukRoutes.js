@@ -1,4 +1,5 @@
-const router = require('express').Router();
+const express = require('express');
+const route = express.Router();
 
 const {
     vnukogram,
@@ -6,15 +7,15 @@ const {
     vnukoprofile,
 } = require('../controllers/vnukControllers');
 
-router.get('/', vnukogram);
+route.get('/', vnukogram);
 
 
 
-router.get('/likes', vnukolikes);
+route.get('/likes', vnukolikes);
 
 
 
-router.get('/profile', vnukoprofile)
+route.get('/profile', vnukoprofile)
 
 
-module.exports = router;
+module.exports = route;
