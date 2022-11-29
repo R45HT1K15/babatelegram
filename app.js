@@ -11,6 +11,8 @@ const dbCheck = require('./db/dbCheck');
 
 // импорт роутов
 const indexRoutes = require('./routes/indexRoutes');
+const vnukRoutes = require('./routes/vnukRoutes');
+const babushkaRoutes = require('./routes/babushkaRoutes');
 
  // вызов функции проверки соединения с базоый данных
 dbCheck();
@@ -37,8 +39,8 @@ app.use(session(sessionConfig));
 
 //роутеры
 app.use('/', indexRoutes); //обработка main, signin, signup, logout
-// app.use('/babushkagram', babushkaRoutes); //обработка newPhoto, profile/:id, profile/:id/:imageid 
-// app.use('/vnukogram ', vnukRoutes); // обработка likes, profile
+app.use('/babushkagram', babushkaRoutes); //обработка newPhoto, profile/:id, profile/:id/:imageid 
+app.use('/vnukogram ', vnukRoutes); // обработка likes, profile
 
 const PORT = process.env.PORT || 3100;
 app.listen(PORT, (err) => {
