@@ -5,8 +5,8 @@ module.exports = function Signup() {
 return (
 <Layout>
   <div className='wrapper'>
-    <h2>Добро пожаловать в Babushkogram</h2>
     <h3>Регистрация</h3>
+    <a href="/"><button type="button" class="btn-close" aria-label="Закрыть"></button></a>
     <form action='/signup' method='POST'>
       <div class="mb-3">
         <label htmlFor="fio" class="form-label">Ф.И.О.</label>
@@ -39,8 +39,8 @@ return (
           <option value="vnukogram">Внучка(внук)</option>
         </select>
       </div>
-      <a href="/babushkagram" id='reg'>
-        <button type="submit" class="btn btn-outline-success btn-lg"> Зарегистрироваться</button>
+      <a href="/babushkagram" id='reg' className="btn">
+        <button type="submit" className="btn"> Зарегистрироваться</button>
       </a>
     </form>
   </div>
