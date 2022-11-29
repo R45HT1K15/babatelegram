@@ -2,9 +2,7 @@
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Grandparent_grandchild extends Model {
-    static associate({  }) {
-    
-    }
+    static associate({}) {}
   }
   Grandparent_grandchild.init(
     {

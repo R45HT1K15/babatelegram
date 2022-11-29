@@ -2,8 +2,9 @@
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Picture extends Model {
-    static associate({ Grandparent }) {
-      Picture.belongsToMany(Picture, {
+    static associate({ Grandparent, Like }) {
+      Picture.belongsTo(Grandparent, { foreignKey: 'grandparent_id' });
+      Picture.belongsToMany(Grandparent, {
         through: Like,
         foreignKey: 'picture_id',
         otherKey: 'grandparent_id',
