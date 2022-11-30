@@ -3,7 +3,7 @@ const router = require('express').Router();
 const {
   babushkagram,
   babushkaNewPhoto,
-  babushkaPhotoEdit,
+  BabushkaPhotoDetail,
   babushkaProfile,
   addLike,
 } = require('../controllers/babushkaControllers');
@@ -14,7 +14,7 @@ router.get('/newPhoto', babushkaNewPhoto);
 
 router.get('/profile', babushkaProfile);
 
-router.get('/profile/:id/:imageid', babushkaPhotoEdit);
+router.get('/profile/:id', BabushkaPhotoDetail);
 
 router.put('/like', addLike);
 

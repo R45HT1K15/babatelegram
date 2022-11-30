@@ -13,7 +13,7 @@ return (
     <div className='photoTable'>
       {pictures && pictures.map((el) =>
       <div className="col">
-        <a href=""><img className='photkaProfile' src={`${el.url}`} alt="что-то пошло не так" /></a>
+        <a href={`/babushkagram/profile/${el.id}`} id={el.id}><img className='photkaProfile' src={`${el.url}`} alt="что-то пошло не так" /></a>
       </div>
       )}
     </div>

@@ -106,17 +106,27 @@ button{
   background-color: #fff8e7;
   border: none;
 }
+
 .hat{
   height: 250px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .like {
   margin-top: 45px;
   margin-left: 45px;
   background-color: #fff8e7;
   border: none;
+}
+
+.detailPhotoInfo{
+  position: relative;
+  margin-top: 130px;
+  margin-left: 267px;
+  width: 603px;
+  scale: 1.1;
 }
 
 .photka {
@@ -183,9 +193,15 @@ footer {
 }
 
 .pictureText {
-  font-size: 20px;
+  display: none;
+  font-size: 22px;
+  min-height: 200px;
+  scale: 0.8;
+  margin-left: -20px;
 }
-
+.text {
+  margin-left: -50px;
+}
 
 @media (min-width: 768px) {
   .container {

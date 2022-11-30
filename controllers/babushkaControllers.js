@@ -2,7 +2,7 @@ const render = require('../lib/render');
 
 const Babushkagram = require('../views/Babushkagram');
 const BabushkaNewPhoto = require('../views/BabushkaNewPhoto');
-const BabushkaPhotoEdit = require('../views/BabushkaPhotoEdit');
+const BabushkaPhotoDetail = require('../views/BabushkaPhotoDetail');
 const BabushkaProfile = require('../views/BabushkaProfile');
 
 const { Picture, Grandparent, Like } = require('../db/models');
@@ -45,12 +45,13 @@ exports.babushkaProfile = async (req, res) => {
     }
 }
 
-exports.babushkaPhotoEdit = async (req, res) => {
+exports.BabushkaPhotoDetail = async (req, res) => {
+
   try {
-    //req.params.id
-    const picture = await Picture.findOne({ where: { id: 3 } });
-    console.log('picture', picture);
-    render(BabushkaPhotoEdit, {}, res);
+    const id = req.params.id
+    const { user } = req.session
+    const picture = await Picture.findOne({ where: { id } });
+    render(BabushkaPhotoDetail, {picture, user}, res);
   } catch (error) {
     console.log('\x1b[31m', 'Error', error);
   }
