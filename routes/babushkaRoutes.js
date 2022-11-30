@@ -12,7 +12,7 @@ router.get('/', babushkagram);
 
 router.get('/newPhoto', babushkaNewPhoto);
 
-router.get('/profile/:id', babushkaProfile);
+router.get('/profile, babushkaProfile);
 
 router.get('/profile/:id/:imageid', babushkaPhotoEdit);
 

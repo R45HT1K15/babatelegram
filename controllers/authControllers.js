@@ -44,7 +44,7 @@ const checkUserAndCreateSession = async (req, res) => {
       const findBabushka = await Grandparent.findOne({ where: { login }})
       const isPasswValid = await bcrypt.compare(password, findBabushka.password);
       if (isPasswValid) {
-        req.session.user = { id: findBabushka.id, name: findBabushka.name, role }; 
+        req.session.user = { id: findBabushka.id, name: findBabushka.name, role, fio:findBabushka.fio }; 
         req.session.save(() => {
           res.redirect('/babushkagram');
         })
@@ -57,7 +57,7 @@ const checkUserAndCreateSession = async (req, res) => {
       const findVnuk = await Grandchild.findOne({ where: { login }})
       const isPasswValid = await bcrypt.compare(password, findVnuk.password);
       if (isPasswValid) {
-        req.session.user = { id: findVnuk.id, name: findVnuk.name, role }; 
+        req.session.user = { id: findVnuk.id, name: findVnuk.name, role, fio:findVnuk.fio}; 
         req.session.save(() => {
           res.redirect('/'); // сделать редирект vnukogram
         })
