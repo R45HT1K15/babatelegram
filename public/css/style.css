@@ -106,7 +106,12 @@ button{
   background-color: #fff8e7;
   border: none;
 }
-
+.hat{
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .like {
   margin-top: 45px;
   margin-left: 45px;
@@ -117,6 +122,25 @@ button{
 .photka {
   width: 450px;
   height: 400px;
+}
+
+.photoTable{
+  width: 1100px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.col{
+  flex: 0 0 0%;
+  border: 1px solid rgb(252, 180, 98);
+  border-radius: 5px;
+}
+
+.photkaProfile{
+  width: 350px;
+  height: 320px;
+  border-radius: 5px;
 }
 
 .bi-heart {
