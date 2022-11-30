@@ -45,6 +45,7 @@ exports.babushkaProfile = async (req, res) => {
     const { user } = req.session;
     const pictures = await Picture.findAll({
       where: { grandparent_id: userid },
+      order: [['id', 'DESC']],
       include: Grandparent,
     });
     render(BabushkaProfile, { pictures, user }, res);
@@ -54,12 +55,15 @@ exports.babushkaProfile = async (req, res) => {
 };
 
 exports.BabushkaPhotoDetail = async (req, res) => {
-
   try {
-    const id = req.params.id
-    const { user } = req.session
+    const id = req.params.id;
+    const { user } = req.session;
     const picture = await Picture.findOne({ where: { id } });
-    render(BabushkaPhotoDetail, {picture, user}, res);
+    const like = await Like.findOne({
+      where: { picture_id: id, grandparent_id: user.id },
+    });
+
+    render(BabushkaPhotoDetail, { picture, user, like }, res);
   } catch (error) {
     console.log('\x1b[31m', 'Error', error);
   }
