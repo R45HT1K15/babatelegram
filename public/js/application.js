@@ -30,6 +30,7 @@ hintBtn?.addEventListener('click', (event) => {
 });
 
 const photos = document.querySelectorAll('.photo')
+
 photos.forEach((photo) => {
   photo.querySelector('.mark').addEventListener('click', () => {
     const log = photo.querySelector('#log')
@@ -57,40 +58,24 @@ photos.forEach((photo) => {
         log.innerHTML = '';
         text = text.replace(/\n\s*\n/g, '\n');
         const pre = document.createElement('pre');
+        const pauseBtn = document.createElement('button');
+        const resumeBtn = document.createElement('button');
+        pauseBtn.innerText = 'пауза';
+        resumeBtn.innerText = 'продолжить'
         pre.innerHTML = text;
+        pauseBtn.classList = 'pause';
+        resumeBtn.classList = 'resume';
         pre.classList = 'text'
         log.appendChild(pre);
+        log.appendChild(pauseBtn);
+        log.appendChild(resumeBtn)
       }
+
       const file = photo.querySelector('.photocartochka').querySelector('.photka').src
       const lang = 'rus'
 
       recognize(file, lang, updateProgress)
       .then(setResult);
-
-      
-      const speakBtn = photo.querySelector('#listen') // получаем кнопку озвучки
-      
-      // слушатель событик на кнопке и запуск функции озвучки текста
-      speakBtn.addEventListener('click', () => {
-        const speech = new SpeechSynthesisUtterance()
-        function speak() {
-          const text = photo.querySelector('.pause').textContent
-          speech.text = text
-          speech.lang = 'rus'
-          speechSynthesis.speak(speech)
-          // let text = photo.querySelector('.text'); // получаем полученный с картинки текст
-          // speechSynthesis.speak(new SpeechSynthesisUtterance(text.textContent)); // происходит озвучка текста
-        }
-        let text = photo.querySelector('.text')
-        console.log('text', text)
-        if(text.className === 'text') {
-          text.className = 'pause'
-          speak();
-        } else {
-          window.speechSynthesis.pause()
-          text.className = 'pause';
-        }
-      })
       
     } else {
       log.style.display = 'none'
@@ -98,6 +83,46 @@ photos.forEach((photo) => {
     }
   })
 })
+
+const speakBtns = document.querySelectorAll('#listen') // получаем кнопку озвучки
+speakBtns.forEach((speakBtn) => {
+  speakBtn.addEventListener('click', () => {
+    const div = speakBtn.closest('.detailInfo')
+    const buttons = div.querySelectorAll('button')
+    convertTextToSpeech()
+    initializeHandlers(buttons)
+  })
+})
+
+function initializeHandlers(buttons) {
+  buttons.forEach((button) => {
+    button.addEventListener("click", ({ target: { className } }) => {
+      console.log('button', button)
+      switch (className) {
+        case "speak":
+          if (!speechSynthesis.speaking) {
+            convertTextToSpeech();
+          }
+          break;
+        case "pause":
+          return speechSynthesis.pause();
+        case "resume":
+          return speechSynthesis.resume();
+        default:
+          return;
+      }
+    });
+  })
+}
+
+const speech = new SpeechSynthesisUtterance()
+
+function convertTextToSpeech() {
+  const text = document.querySelector('.text').textContent
+  speech.text = text
+  speech.lang = 'rus'
+  speechSynthesis.speak(speech)
+}
 
 dangerDelete?.addEventListener('click', (event) => {
   model1.style.display = 'block';
@@ -172,3 +197,43 @@ document.addEventListener('click', async (event) => {
     }
   }
 })
+
+const speakBtns = document.querySelectorAll('#listen') // получаем кнопку озвучки
+speakBtns.forEach((speakBtn) => {
+  speakBtn.addEventListener('click', () => {
+    const div = speakBtn.closest('.detailInfo')
+    const buttons = div.querySelectorAll('button')
+    convertTextToSpeech()
+    initializeHandlers(buttons)
+  })
+})
+
+function initializeHandlers(buttons) {
+  buttons.forEach((button) => {
+    button.addEventListener("click", ({ target: { className } }) => {
+      console.log('button', button)
+      switch (className) {
+        case "speak":
+          if (!speechSynthesis.speaking) {
+            convertTextToSpeech();
+          }
+          break;
+        case "pause":
+          return speechSynthesis.pause();
+        case "resume":
+          return speechSynthesis.resume();
+        default:
+          return;
+      }
+    });
+  })
+}
+
+const speech = new SpeechSynthesisUtterance()
+
+function convertTextToSpeech() {
+  const text = document.querySelector('.text').textContent
+  speech.text = text
+  speech.lang = 'rus'
+  speechSynthesis.speak(speech)
+}
