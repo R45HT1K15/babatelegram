@@ -12,7 +12,7 @@ module.exports = function Babushkagram({
       <div className="photosPage">
         {pictures &&
           pictures.map((el) => (
-            <div className="photo">
+            <div className="photo" key={el.id}>
               <h2>Выложил(а) {el['Grandparent.fio']} </h2>
               <div className="detailInfo">
                 <div className="photocartochka">
@@ -40,7 +40,7 @@ module.exports = function Babushkagram({
                     </button>
                   </div>
                   <div className="logo">
-                    <button className="mark">
+                    <button className="mark" id="listen">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="60"

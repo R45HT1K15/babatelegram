@@ -15,27 +15,7 @@ hintBtn?.addEventListener('click', (event) => {
   if (event.target.innerText === 'Включить подсказки!')
     event.target.innerText = 'Выключить подсказки!';
   else event.target.innerText = 'Включить подсказки!';
-  // console.log('event.target.innerText', event.target.innerText)
-  // if(event.target.innerText === "Выключить подсказки!") event.target.innerText = "Включить подсказки!";
 });
-// console.log(hintBtn)
-// console.log(offHint)
-
-// document.querySelector('#role').onchange = function (event) {
-//   let el = document.querySelector('#reg');
-//   el.href = '/'+event.target.value
-// };
-
-// считавание текста с картинки
-// функция распознавания изображения
-// function recoqnize(file, lang, logger){
-//   return Tesseract.recognize(file, lang, {logger})
-//   .then(({ data: { text }}) => {
-//     return text;
-//   })
-// }
-
-// const log = document.querySelectorAll('#log');
 
 const photos = document.querySelectorAll('.photo')
 photos.forEach((photo) => {
@@ -80,6 +60,7 @@ photos.forEach((photo) => {
         speechSynthesis.speak(new SpeechSynthesisUtterance(text.textContent)); // происходит озвучка текста
       }
       const speakBtn = photo.querySelector('#listen') // получаем кнопку озвучки
+      console.log('speakBtn', speakBtn)
       
       // слушатель событик на кнопке и запуск функции озвучки текста
       speakBtn.addEventListener('click', () => {
