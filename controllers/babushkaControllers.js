@@ -12,8 +12,9 @@ const { Picture,
 exports.babushkagram = async (req, res) => {
     try {
         const pictures = await Picture.findAll({include: Grandparent})
+        const { user } = req.session
         // console.log('pictures------------------', pictures[2])
-        render(Babushkagram, { pictures }, res);
+        render(Babushkagram, { pictures, user }, res);
     } catch (error) {
         console.log('\x1b[31m', 'Error', error);
     }

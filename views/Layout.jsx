@@ -1,6 +1,6 @@
 const React = require('react');
 
-function Layout({ children }) {
+function Layout({ children, user }) {
 return (
 <html lang='en'>
 
@@ -21,12 +21,11 @@ return (
 </head>
 
 <body>
-  {/* для авторизованного пользователя */}
-  {/* <></> */}
-  {/* для неавторизованного пользователя */}
   <header>
     <h1>Добро пожаловать в Babushkagram</h1>
   </header>
+  {user?.role === 'babushkagram' ? 
+  (<>
   <div className="hint1">
     <h3>Все фотографии друзей</h3>
     <img src="/images/arrow1.png" height="250px" weight="250px" alt="" />
@@ -46,6 +45,11 @@ return (
       <a href="/babuskagram/newPhoto"><button className="middle" type="button">Выложить фотокарточку</button></a>
       <a href="/babushkagram/profile"><button className="right" type="button">Мой профиль</button></a>
     </div>
+    </footer>
+    </>)
+     : (  <div className='container'>{children}</div>)}
+
+  <footer>
     {/* для внука */}
     {/* <div className="btn-group" id='blackwood' role="group"  aria-label="Basic mixed styles example">
       <a href="/vnukogram" id="left"><button className="nav" type="button">Фотки бабули</button></a>

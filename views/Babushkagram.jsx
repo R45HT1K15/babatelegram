@@ -1,9 +1,9 @@
 const React = require('react');
 const Layout = require('./Layout');
 
-module.exports = function Babushkagram({pictures}) {
+module.exports = function Babushkagram({pictures, user}) {
 return (
-<Layout>
+<Layout user={user}>
   
   <div className='photosPage'>
     {pictures && pictures.map((el) =>
