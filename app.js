@@ -13,6 +13,7 @@ const dbCheck = require('./db/dbCheck');
 const indexRoutes = require('./routes/indexRoutes');
 const vnukRoutes = require('./routes/vnukRoutes');
 const babushkaRoutes = require('./routes/babushkaRoutes');
+const uploadRoute = require('./routes/uploadRoute');
 
  // вызов функции проверки соединения с базоый данных
 dbCheck();
@@ -22,6 +23,7 @@ console.log('path.resolve(\'public\')', path.resolve('public'))
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use('./images', express.static(path.join(__dirname, 'images')))
 
 // настройка сессий
 const sessionConfig = {
@@ -42,12 +44,7 @@ app.use(session(sessionConfig));
 app.use('/', indexRoutes); //обработка main, signin, signup, logout
 app.use('/babushkagram', babushkaRoutes); //обработка newPhoto, profile/:id, profile/:id/:imageid 
 app.use('/vnukogram', vnukRoutes); // обработка likes, profile
-
-// const { Picture } = require('./db/models')
-// app.get('/ad', async (req, res) => {
-//   const picture = await Picture.findAll()
-//   console.log('picture==================================', picture)
-// })
+app.use('/api', uploadRoute)
 
 const PORT = process.env.PORT || 3100;
 app.listen(PORT, (err) => {
