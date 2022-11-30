@@ -38,6 +38,7 @@ return (
     <button className='hintBtn'><h3 className='offHint'>Выключить подсказки!</h3></button>
   </div>
   <div className='container'>{children}</div>
+
   <footer>
     {/* для бабки */}
     <div className="btn-group" id='blackwood' role="group"  aria-label="Basic mixed styles example">
@@ -46,17 +47,22 @@ return (
       <a href="/babushkagram/profile"><button className="right" type="button">Мой профиль</button></a>
     </div>
     </footer>
+
     </>)
      : (  <div className='container'>{children}</div>)}
-
+  { user?.role === 'vnukogram' ? 
+  (<>
   <footer>
     {/* для внука */}
-    {/* <div className="btn-group" id='blackwood' role="group"  aria-label="Basic mixed styles example">
+    <div className="btn-group" id='blackwood' role="group"  aria-label="Basic mixed styles example">
       <a href="/vnukogram" id="left"><button className="nav" type="button">Фотки бабули</button></a>
       <a href="/vnukogram/likes" id="middle"><button className="nav" type="button">Лайкнутые фотки</button></a>
       <a href="/vnukogram/profile" id="right"><button className="nav" type="button">Мой профиль</button></a>
-    </div> */}
+    </div>
   </footer>
+  </>)
+     : (<div></div>)}
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
   </script>

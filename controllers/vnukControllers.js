@@ -17,9 +17,10 @@ const { Picture,
 
 exports.vnukogram = async (req, res) => {
     try {
-        const picture = await Picture.findAll()
-        // console.log('pictures---------------', picture)
-        render(Vnukogram, { picture }, res);
+        const pictures = await Picture.findAll({where: {grandparent_id: 1}})
+        console.log('pictures---------------', pictures)
+        const { user } = req.session
+        render(Vnukogram, { pictures, user }, res);
     } catch (error) {
         console.log('\x1b[31m', 'Error', error);
     }

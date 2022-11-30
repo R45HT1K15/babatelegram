@@ -28,7 +28,7 @@ const createUserAndSession = async (req, res) => {
       const user = await Grandchild.create({ fio, login, password: hashedPassword });
       req.session.user = { id: user.id, name: user.fio, role };
       req.session.save(() => {
-        res.redirect('/'); // сделать редирект vnukogram
+        res.redirect('/vnukogram'); // сделать редирект vnukogram
       })
     };
   } catch (error) {
@@ -55,11 +55,14 @@ const checkUserAndCreateSession = async (req, res) => {
     }
     if (role === 'vnukogram') {
       const findVnuk = await Grandchild.findOne({ where: { login }})
+      console.log('findVnuk ------------------------------', findVnuk)
       const isPasswValid = await bcrypt.compare(password, findVnuk.password);
       if (isPasswValid) {
-        req.session.user = { id: findVnuk.id, name: findVnuk.name, role }; 
+        req.session.user = { id: findVnuk.id, name: findVnuk.fio, role }; 
+      console.log(' { id: findVnuk.id, name: findVnuk.fio, role } ------------------------------', { id: findVnuk.id, name: findVnuk.name, role})
+
         req.session.save(() => {
-          res.redirect('/'); // сделать редирект vnukogram
+          res.redirect('/vnukogram'); // сделать редирект vnukogram
         })
       }
       else {
