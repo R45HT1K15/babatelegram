@@ -55,9 +55,9 @@ return (
   <footer>
     {/* для внука */}
     <div className="btn-group" id='blackwood' role="group"  aria-label="Basic mixed styles example">
-      <a href="/vnukogram" id="left"><button className="nav" type="button">Фотки бабули</button></a>
-      <a href="/vnukogram/likes" id="middle"><button className="nav" type="button">Лайкнутые фотки</button></a>
-      <a href="/vnukogram/profile" id="right"><button className="nav" type="button">Мой профиль</button></a>
+      <a href="/vnukogram" ><button className="left" type="button">Фотки бабули</button></a>
+      <a href="/vnukogram/likes" ><button className="middle" type="button">Лайкнутые фотки</button></a>
+      <a href="/vnukogram/profile" ><button className="narightv" type="button">Мой профиль</button></a>
     </div>
   </footer>
   </>)

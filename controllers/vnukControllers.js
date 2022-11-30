@@ -17,8 +17,7 @@ const { Picture,
 
 exports.vnukogram = async (req, res) => {
     try {
-        const pictures = await Picture.findAll({where: {grandparent_id: 11}})
-        console.log('pictures---------------', pictures)
+        const pictures = await Picture.findAll({where: {grandparent_id: 1}})
         const { user } = req.session
         render(Vnukogram, { pictures, user }, res);
     } catch (error) {
@@ -30,10 +29,10 @@ exports.vnukogram = async (req, res) => {
 exports.vnukolikes = async (req, res) => {
     try {
         // const usersGrandma = req.session.user.granmaId || 1;
-        const usersGrandma = 11;
-        const grandma = await Grandparent.findOne({ include: Picture, where: { id: usersGrandma }})
+        const usersGrandma = 1;
+        const grandma = await Grandparent.findOne({ include: Picture, where: { id: usersGrandma }, raw: true})
         const grandmaLikes = grandma.Pictures
-        const { user } = req.session
+        const { user } = req.session;
         // console.log('grandmaLikes', grandmaLikes)
         render(Vnukolikes, { grandmaLikes, user }, res);
     } catch (error) {
@@ -43,9 +42,11 @@ exports.vnukolikes = async (req, res) => {
 
 exports.vnukoprofile = async (req, res) => {
     try {
-        const grandparents = await Grandparent.findAll()
-        // console.log('grandparents', grandparents)
-        render(Vnukoprofile, {}, res);
+        const { user } = req.session;
+        console.log('user -----------------', {user})
+        const grandparents = await Grandparent.findAll({ raw: true})
+        console.log('grandparents', grandparents)
+        render(Vnukoprofile, { grandparents, user }, res);
     } catch (error) {
         console.log('\x1b[31m', 'Error', error);
     }
