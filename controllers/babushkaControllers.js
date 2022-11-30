@@ -28,11 +28,10 @@ exports.babushkaNewPhoto = (req, res) => {
 
 exports.babushkaProfile = async (req, res) => {
     try {
-        // const userid = req.session.user.id
-        const userid = 1
-        const user = await Picture.findAll({where: { grandparent_id: userid }, include: Grandparent });
-        // console.log('user-------------------', user)
-        render(BabushkaProfile, {}, res);
+        const userid = req.session.user.id
+        const { user } = req.session
+        const pictures = await Picture.findAll({where: { grandparent_id: userid }, include: Grandparent });
+        render(BabushkaProfile, {pictures, user}, res);
     } catch (error) {
         console.log('\x1b[31m', 'Error', error);
     }

@@ -16,7 +16,7 @@ router.get('/newPhoto', babushkaNewPhoto)
 
 
 
-router.get('/profile/:id', babushkaProfile)
+router.get('/profile', babushkaProfile)
 
 
 
