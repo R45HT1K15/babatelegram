@@ -1,5 +1,5 @@
 document.addEventListener('click', async (event) => {
-  console.log('event', event.target);
+  // console.log('event', event.target);
 
   if (event.target.dataset.like === 'like') {
     event.preventDefault();

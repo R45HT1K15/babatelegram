@@ -40,7 +40,7 @@ module.exports = function Babushkagram({
                     </button>
                   </div>
                   <div className="logo">
-                    <button className="mark" id="listen">
+                    <button className="mark  speak" id="listen">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="60"
