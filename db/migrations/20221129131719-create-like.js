@@ -15,6 +15,7 @@ module.exports = {
           model: 'Pictures',
           key: 'id',
         },
+        onDelete: 'cascade',
       },
       grandparent_id: {
         type: Sequelize.INTEGER,
