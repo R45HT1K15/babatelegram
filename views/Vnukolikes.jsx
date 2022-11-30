@@ -4,7 +4,7 @@ const Layout = require('./Layout');
 module.exports = function Vnukolikes({grandmaLikes, user}) {
   return (
   <Layout user={user}>
-    <div>{user.fio}, Вашей бабушке понравились вот эти фото: </div>
+    <div>{user.name}, Вашей бабушке понравились вот эти фото: </div>
     <div className='photosPage'>
       {grandmaLikes && grandmaLikes.map((el) =>
       (<div className='photo'>
