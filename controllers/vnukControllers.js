@@ -17,7 +17,7 @@ const { Picture,
 
 exports.vnukogram = async (req, res) => {
     try {
-        const pictures = await Picture.findAll({where: {grandparent_id: 1}})
+        const pictures = await Picture.findAll({where: {grandparent_id: 11}})
         console.log('pictures---------------', pictures)
         const { user } = req.session
         render(Vnukogram, { pictures, user }, res);
@@ -30,11 +30,12 @@ exports.vnukogram = async (req, res) => {
 exports.vnukolikes = async (req, res) => {
     try {
         // const usersGrandma = req.session.user.granmaId || 1;
-        const usersGrandma = 1;
+        const usersGrandma = 11;
         const grandma = await Grandparent.findOne({ include: Picture, where: { id: usersGrandma }})
         const grandmaLikes = grandma.Pictures
+        const { user } = req.session
         // console.log('grandmaLikes', grandmaLikes)
-        render(Vnukolikes, { grandmaLikes }, res);
+        render(Vnukolikes, { grandmaLikes, user }, res);
     } catch (error) {
         console.log('\x1b[31m', 'Error', error);
     }
