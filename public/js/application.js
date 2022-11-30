@@ -55,23 +55,30 @@ photos.forEach((photo) => {
       recognize(file, lang, updateProgress)
       .then(setResult);
 
-      function speak() {
-        let text = photo.querySelector('.text'); // получаем полученный с картинки текст
-        speechSynthesis.speak(new SpeechSynthesisUtterance(text.textContent)); // происходит озвучка текста
-      }
+      
       const speakBtn = photo.querySelector('#listen') // получаем кнопку озвучки
-      console.log('speakBtn', speakBtn)
       
       // слушатель событик на кнопке и запуск функции озвучки текста
       speakBtn.addEventListener('click', () => {
+        const speech = new SpeechSynthesisUtterance()
+        function speak() {
+          const text = photo.querySelector('.pause').textContent
+          speech.text = text
+          speech.lang = 'rus'
+          speechSynthesis.speak(speech)
+          // let text = photo.querySelector('.text'); // получаем полученный с картинки текст
+          // speechSynthesis.speak(new SpeechSynthesisUtterance(text.textContent)); // происходит озвучка текста
+        }
         let text = photo.querySelector('.text')
         console.log('text', text)
-        if(text.className !== '.pause') {
+        if(text.className === 'text') {
+          text.className = 'pause'
           speak();
         } else {
+          window.speechSynthesis.pause()
+          text.className = 'pause';
         }
       })
-
       
     } else {
       log.style.display = 'none'
