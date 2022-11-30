@@ -10,7 +10,11 @@ const { Picture, Grandparent, Like } = require('../db/models');
 exports.babushkagram = async (req, res) => {
   const grandparent_id = req.session.user.id;
   try {
-    const pictures = await Picture.findAll({ include: Grandparent, raw: true });
+    const pictures = await Picture.findAll({
+      include: Grandparent,
+      order: [['id', 'DESC']],
+      raw: true,
+    });
     const likeOfUser = await Like.findAll({
       attributes: ['picture_id'],
       where: { grandparent_id },
@@ -70,7 +74,16 @@ exports.addLike = async (req, res) => {
         grandparent_id,
       },
     });
-
+    if (answer) {
+      const picture = await Picture.findOne({
+        where: {
+          id: pictureId,
+        },
+      });
+      const incrementResult = await picture.increment('countLike');
+      const { countLike } = incrementResult;
+      return res.json({ answer, countLike });
+    }
     res.json({ answer });
   } catch (error) {
     console.log(error);
@@ -84,7 +97,16 @@ exports.deleteLike = async (req, res) => {
     const answer = await Like.destroy({
       where: { picture_id: pictureId, grandparent_id },
     });
-
+    if (answer === 1) {
+      const picture = await Picture.findOne({
+        where: {
+          id: pictureId,
+        },
+      });
+      const decrementResult = await picture.decrement('countLike');
+      const { countLike } = decrementResult;
+      return res.json({ answer, countLike });
+    }
     res.json({ answer });
   } catch (error) {}
 };
