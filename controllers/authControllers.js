@@ -18,15 +18,15 @@ const createUserAndSession = async (req, res) => {
     if (role === 'babushkagram') {
       const hashedPassword = await bcrypt.hash(password, 10);
       const user = await Grandparent.create({ fio, login, password: hashedPassword, help: true });
-      req.session.user = { id: user.id, name: user.fio, help: user.help };
+      req.session.user = { id: user.id, name: user.fio, role };
       req.session.save(() => {
-        res.redirect('/'); // сделать редирект babushkagram
+        res.redirect('/babushkagram');
       })
     };
     if (role === 'vnukogram') {
       const hashedPassword = await bcrypt.hash(password, 10);
       const user = await Grandchild.create({ fio, login, password: hashedPassword });
-      req.session.user = { id: user.id, name: user.fio };
+      req.session.user = { id: user.id, name: user.fio, role };
       req.session.save(() => {
         res.redirect('/'); // сделать редирект vnukogram
       })
@@ -44,9 +44,9 @@ const checkUserAndCreateSession = async (req, res) => {
       const findBabushka = await Grandparent.findOne({ where: { login }})
       const isPasswValid = await bcrypt.compare(password, findBabushka.password);
       if (isPasswValid) {
-        req.session.user = { id: findBabushka.id, name: findBabushka.name, help: findBabushka.help  }; 
+        req.session.user = { id: findBabushka.id, name: findBabushka.name, role, fio:findBabushka.fio }; 
         req.session.save(() => {
-          res.redirect('/'); // сделать редирект babushkagram
+          res.redirect('/babushkagram');
         })
       }
       else {
@@ -57,7 +57,7 @@ const checkUserAndCreateSession = async (req, res) => {
       const findVnuk = await Grandchild.findOne({ where: { login }})
       const isPasswValid = await bcrypt.compare(password, findVnuk.password);
       if (isPasswValid) {
-        req.session.user = { id: findVnuk.id, name: findVnuk.name }; 
+        req.session.user = { id: findVnuk.id, name: findVnuk.name, role, fio:findVnuk.fio}; 
         req.session.save(() => {
           res.redirect('/'); // сделать редирект vnukogram
         })

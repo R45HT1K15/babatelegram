@@ -8,13 +8,13 @@ module.exports = {
       [
         {
           login: 'Anji',
-          password: '1234',
+          password: '$2b$10$YEMVGm2jvbg8M4P2VhUpJOihByPy9m1bProLSt/mDkiqW.lpW9Yqa',
           fio: 'Афанасьева Тамара Ивановна',
           help: true,
         },
         {
           login: 'Filla',
-          password: '1234',
+          password: '$2b$10$YEMVGm2jvbg8M4P2VhUpJOihByPy9m1bProLSt/mDkiqW.lpW9Yqa',
           fio: 'Киркоров Филипп Васильевич',
           help: true,
         },
