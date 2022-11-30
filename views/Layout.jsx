@@ -43,7 +43,7 @@ return (
     {/* для бабки */}
     <div className="btn-group" id='blackwood' role="group"  aria-label="Basic mixed styles example">
       <a href="/babushkagram"><button className="left" type="button">Все фотокарточки</button></a>
-      <a href="/babuskagram/newPhoto"><button className="middle" type="button">Выложить фотокарточку</button></a>
+      <a href="/babushkagram/newPhoto"><button className="middle" type="button">Выложить фотокарточку</button></a>
       <a href="/babushkagram/profile"><button className="right" type="button">Мой профиль</button></a>
     </div>
     </footer>
