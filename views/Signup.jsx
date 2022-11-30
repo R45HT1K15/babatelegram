@@ -5,7 +5,7 @@ module.exports = function Signup( { error }) {
 return (
 <Layout>
   <div className='wrapper'>
-    <h3>Регистрация</h3>
+    <h2>Регистрация</h2>
     { error && (<h4>Пользователь с таким логином существует</h4>)}
     <a href="/"><button type="button" className="btn-close" aria-label="Закрыть"></button></a>
     <form action='/signup' method='POST'>
@@ -36,12 +36,12 @@ return (
       <div className="mb-3">
         <label htmlFor="role" className="form-label">Выберите категорию</label>
         <select className="form-select" defaultValue="Бабушка(дедушка)" name="role" id="role" required>
-          <option value="babushkagram">Бабушка(дедушка)</option>
-          <option value="vnukogram">Внучка(внук)</option>
+          <option value="babushkagram">Бабушка/дедушка</option>
+          <option value="vnukogram">Внучка/внук</option>
         </select>
       </div>
-      <a href="/babushkagram" id='reg' className="btn">
-        <button type="submit" className="btn"> Зарегистрироваться</button>
+      <a href="/babushkagram" id='reg'>
+        <button type="submit" className="btnAuth"> Зарегистрироваться</button>
       </a>
     </form>
   </div>

@@ -5,7 +5,7 @@ module.exports = function Signin({error}) {
 return (
 <Layout>
   <div className='wrapper'>
-    <h3>Вход</h3>
+    <h2>Вход</h2>
     {error && (<h4> Неправильно введен логин или пароль</h4>)}
     <a href="/"><button type="button" className="btn-close" aria-label="Закрыть"></button></a>
     <form action='/signin' method='POST'>
@@ -20,12 +20,12 @@ return (
       <div className="mb-3">
         <label htmlFor="role">Кто вы?</label>
         <select className="form-select" defaultValue="Бабушка(дедушка)" name="role" id="role" required>
-          <option value="babushkagram">Бабушка(дедушка)</option>
-          <option value="vnukogram">Внучка(внук)</option>
+          <option value="babushkagram">Бабушка/дедушка</option>
+          <option value="vnukogram">Внучка/внук</option>
         </select>
       </div>
-      <a href="/babushkagram" id='reg' className="btn">
-        <button type="submit" className="btn"> Войти </button>
+      <a href="/babushkagram" id='reg'>
+        <button type="submit" className="btnAuth"> Войти </button>
       </a>
     </form>
   </div>
