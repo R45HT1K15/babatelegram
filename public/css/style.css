@@ -115,8 +115,6 @@ button{
 }
 
 .like {
-  margin-top: 45px;
-  margin-left: 45px;
   background-color: #fff8e7;
   border: none;
 }
@@ -191,7 +189,12 @@ footer {
 .right {
   border-radius: 0px 15px 0px 0px;
 }
-
+.counts{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
 .pictureText {
   display: none;
   font-size: 22px;
