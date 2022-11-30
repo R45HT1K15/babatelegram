@@ -27,7 +27,7 @@ return (
             </button>
           </div>
           <div className='logo'>
-            <button className='mark'>
+            <button className='mark' id="listen">
               <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor"
                 className="bi bi-music-note-beamed" viewBox="0 0 16 16">
                 <path
@@ -57,6 +57,7 @@ return (
             </form>
           </div>
         </div>
+        <div id="log" className="pictureText" style={{display: 'none', minHeight: '200px', border: '1px solid #eee'}}></div>
       </div>
     </div>
     )}
