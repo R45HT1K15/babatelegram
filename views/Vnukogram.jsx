@@ -4,7 +4,7 @@ const Layout = require('./Layout');
 module.exports = function Vnukogram({pictures, user}) {
   return (
   <Layout user={user}>
-    <div>{user.name}, Ваша бабушка выложила</div>
+    <div>{user.fio}, Ваша бабушка выложила</div>
     <div className='photosPage'>
       {pictures && pictures.map((el) =>
       (<div className='photo'>
