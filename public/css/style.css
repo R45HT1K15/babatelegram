@@ -7,6 +7,11 @@ body {
   align-items: center;
   margin-bottom: 100px;
 }
+.dangerDelete{
+  background-color: red;
+  margin-top: 50px;
+  width: 250px;
+}
 .hint1{
   position: fixed;
   
@@ -118,13 +123,44 @@ button{
   background-color: #fff8e7;
   border: none;
 }
-
+.model1, .model2{
+  background-color: rgb(252, 180, 98);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  width: 350px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0 0 25px;
+  display: none;
+  animation: mymove 0.5s;
+  }
+  
+  @keyframes mymove {
+  from {top: 50%;
+    scale: 0.01;
+  }
+  to {top: 50%;
+  scale: 1;}
+  }
+.delete1{
+  margin-right: 25px;
+  margin-top: 75px;
+  display: flex;
+  justify-content: space-around;
+}
 .detailPhotoInfo{
   position: relative;
   margin-top: 130px;
   margin-left: 267px;
   width: 603px;
   scale: 1.1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .photka {

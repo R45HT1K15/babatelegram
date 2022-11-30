@@ -7,6 +7,7 @@ const {
   babushkaProfile,
   addLike,
   deleteLike,
+  deletePicture,
 } = require('../controllers/babushkaControllers');
 
 router.get('/', babushkagram);
@@ -19,5 +20,7 @@ router.get('/profile/:id', BabushkaPhotoDetail);
 
 router.put('/like', addLike);
 router.delete('/like', deleteLike);
+
+router.delete('/onephoto', deletePicture);
 
 module.exports = router;

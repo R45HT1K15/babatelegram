@@ -9,13 +9,8 @@ const {
 
 route.get('/', vnukogram);
 
-
-
 route.get('/likes', vnukolikes);
 
-
-
 route.get('/profile', vnukoprofile)
-
 
 module.exports = route;

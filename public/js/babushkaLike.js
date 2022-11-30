@@ -3,11 +3,7 @@ document.addEventListener('click', async (event) => {
   if (event.target.dataset.like === 'like') {
     event.preventDefault();
     const div = event.target.closest('.likecontainer');
-    console.log('event.target.closest(\'.likecontainer\')', event.target.closest('.likecontainer'))
-    console.log('div', div)
     const pictureId = event.target.dataset.pictureid;
-    console.log('event.target.dataset.pictureid', event.target.dataset.pictureid)
-    console.log('pictureId', pictureId)
     try {
       const response = await fetch('/babushkagram/like', {
         method: 'PUT',
@@ -41,19 +37,14 @@ document.addEventListener('click', async (event) => {
         </button>
       </div>`;
         div.innerHTML = newLike;
-        console.log('div.innerHTML', div.innerHTML)
-        console.log('newLike', newLike)
       }
     } catch (error) {
       console.log(error);
     }
   } else if (event.target.dataset.like === 'deslike') {
     event.preventDefault();
-
     const div = event.target.closest('.likecontainer');
-
     const pictureId = event.target.dataset.pictureid;
-
     try {
       const response = await fetch('/babushkagram/like', {
         method: 'DELETE',
