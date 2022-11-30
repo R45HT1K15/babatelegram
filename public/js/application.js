@@ -25,3 +25,77 @@ hintBtn?.addEventListener('click', (event) => {
 //   let el = document.querySelector('#reg');
 //   el.href = '/'+event.target.value
 // };
+
+// считавание текста с картинки
+// функция распознавания изображения
+// function recoqnize(file, lang, logger){
+//   return Tesseract.recognize(file, lang, {logger})
+//   .then(({ data: { text }}) => {
+//     return text;
+//   })
+// }
+
+// const log = document.querySelectorAll('#log');
+
+const photos = document.querySelectorAll('.photo')
+photos.forEach((photo) => {
+  photo.querySelector('.mark').addEventListener('click', () => {
+    const log = photo.querySelector('#log')
+    if(log.style.display === 'none') {
+      log.style.display = 'block'
+
+      function recognize(file, lang, logger) {
+        return Tesseract.recognize(file, lang, {logger})
+         .then(({ data: {text }}) => {
+           return text;
+         })
+      }
+
+      function updateProgress(data) {
+        log.innerHTML = '';
+        const statusText = document.createTextNode(data.status);
+        const progress = document.createElement('progress');
+        progress.max = 1;
+        progress.value = data.progress;
+        log.appendChild(statusText);
+        log.appendChild(progress);
+      }
+
+      function setResult(text) {
+        log.innerHTML = '';
+        text = text.replace(/\n\s*\n/g, '\n');
+        const pre = document.createElement('pre');
+        pre.innerHTML = text;
+        pre.classList = 'text'
+        log.appendChild(pre);
+      }
+      const file = photo.querySelector('.photocartochka').querySelector('.photka').src
+      const lang = 'rus'
+
+      recognize(file, lang, updateProgress)
+      .then(setResult);
+
+      function speak() {
+        let text = photo.querySelector('.text'); // получаем полученный с картинки текст
+        speechSynthesis.speak(new SpeechSynthesisUtterance(text.textContent)); // происходит озвучка текста
+      }
+      const speakBtn = photo.querySelector('#listen') // получаем кнопку озвучки
+      
+      // слушатель событик на кнопке и запуск функции озвучки текста
+      speakBtn.addEventListener('click', () => {
+        let text = photo.querySelector('.text')
+        console.log('text', text)
+        if(text.className !== '.pause') {
+          speak();
+        } else {
+        }
+      })
+
+      
+    } else {
+      log.style.display = 'none'
+      log.innerHTML = '';
+    }
+  })
+})
+
