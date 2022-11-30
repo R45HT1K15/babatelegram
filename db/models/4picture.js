@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       url: DataTypes.TEXT,
       grandparent_id: DataTypes.INTEGER,
+      countLike: DataTypes.INTEGER,
     },
     {
       sequelize,

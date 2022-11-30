@@ -19,6 +19,9 @@ module.exports = {
           key: 'id',
         },
       },
+      countLike: {
+        type: Sequelize.INTEGER,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
