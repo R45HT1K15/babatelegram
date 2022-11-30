@@ -122,7 +122,6 @@ exports.deletePicture = async (req, res) => {
     const qwer = await Picture.destroy({
       where: {id: pictureId},
     })
-    console.log('qwer', qwer)
     res.sendStatus(200);
   } catch (error) {
     console.log(error)

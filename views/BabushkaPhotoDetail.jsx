@@ -16,7 +16,6 @@ return (
       <div>Уточню в крайниз раз. Удаляем?</div>
       <div className='delete1'>
         <a href=""><button data-del="deleteBtn" data-delid={picture.id}>Да</button></a>
-        {/* <a href={`/babushkagram/profile/${picture.id}`}></a><button className='yeah2'>Да</button> */}
         <button className='nope2'>Нет</button>
       </div>
     </div>
