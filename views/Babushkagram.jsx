@@ -110,15 +110,9 @@ module.exports = function Babushkagram({
                     )}
                   </div>
                 </div>
-                <div
-                  id="log"
-                  className="pictureText"
-                  style={{
-                    display: 'none',
-                    minHeight: '200px',
-                    border: '1px solid #eee',
-                  }}
-                ></div>
+
+                <div id="log" className="pictureText"></div>
+
               </div>
             </div>
           ))}
