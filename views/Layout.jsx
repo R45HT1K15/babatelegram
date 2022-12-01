@@ -1,8 +1,6 @@
 const React = require('react');
 
 function Layout({ children, user = '' }) {
-  console.log('user-------------------------------------', user)
-  console.log('user+++++++++++++++++++++++++++++++++++++', user.name)
 return (
 <html lang='en'>
 
