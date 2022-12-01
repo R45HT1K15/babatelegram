@@ -1,4 +1,6 @@
-const { body } = document;
+const {
+  body
+} = document;
 const footer = document.querySelector('footer');
 const header = document.querySelector('header');
 const hintBtn = document.querySelector('.hintBtn');
@@ -44,7 +46,7 @@ hintBtn?.addEventListener('click', async (event) => {
   } catch (error) {
     console.log(error);
   }
-});
+
 
 // hintBtn?.addEventListener('click', async (event) => {
 
@@ -63,16 +65,23 @@ const photos = document.querySelectorAll('.photo');
 
 photos.forEach((photo) => {
   photo.querySelector('.mark').addEventListener('click', () => {
-    const log = photo.querySelector('#log');
+
+    const log = photo.querySelector('#log')
     if (log.style.display === 'none') {
-      log.style.display = 'block';
+      log.style.display = 'block'
 
       function recognize(file, lang, logger) {
-        return Tesseract.recognize(file, lang, { logger }).then(
-          ({ data: { text } }) => {
+        return Tesseract.recognize(file, lang, {
+            logger
+          })
+          .then(({
+            data: {
+              text
+            }
+          }) => {
             return text;
-          }
-        );
+          })
+
       }
 
       function updateProgress(data) {
@@ -107,7 +116,11 @@ photos.forEach((photo) => {
         .querySelector('.photka').src;
       const lang = 'rus';
 
-      recognize(file, lang, updateProgress).then(setResult);
+
+      recognize(file, lang, updateProgress)
+        .then(setResult);
+
+
     } else {
       log.style.display = 'none';
       log.innerHTML = '';
@@ -127,8 +140,14 @@ speakBtns.forEach((speakBtn) => {
 
 function initializeHandlers(buttons) {
   buttons.forEach((button) => {
-    button.addEventListener('click', ({ target: { className } }) => {
-      console.log('button', button);
+
+    button.addEventListener("click", ({
+      target: {
+        className
+      }
+    }) => {
+      console.log('button', button)
+
       switch (className) {
         case 'speak':
           if (!speechSynthesis.speaking) {
@@ -165,8 +184,10 @@ dangerDelete?.addEventListener('click', (event) => {
   hints.style.opacity = 0.33;
   header.style.scale = 2;
   detailPhotoInfo.style.opacity = 0.33;
-  header.innerText = 'Вы точно хотите удалить фото?';
-});
+
+  header.innerText = 'Вы точно хотите удалить фото?'
+})
+
 
 nope1?.addEventListener('click', (event) => {
   model1.style.display = 'none';
@@ -178,8 +199,10 @@ nope1?.addEventListener('click', (event) => {
   hints.style.opacity = 1;
   header.style.scale = 1;
   detailPhotoInfo.style.opacity = 1;
-  header.innerText = 'Добро пожаловать в Babushkagram';
-});
+
+  header.innerText = 'Добро пожаловать в Babushkagram'
+})
+
 
 yeah1?.addEventListener('click', (event) => {
   model1.style.display = 'none';
@@ -211,14 +234,18 @@ nope2?.addEventListener('click', (event) => {
 
 document.addEventListener('click', async (event) => {
   if (event.target.dataset.del === 'deleteBtn') {
-    const pictureId = event.target.dataset.delid;
+
+    const pictureId = event.target.dataset.delid
+
     try {
       const response = await fetch('/babushkagram/onephoto', {
         method: 'DELETE',
         headers: {
           'Content-type': 'application/json',
         },
-        body: JSON.stringify({ pictureId }),
+        body: JSON.stringify({
+          pictureId
+        }),
       });
       if (response.ok) {
         window.location = '/babushkagram';
@@ -227,4 +254,52 @@ document.addEventListener('click', async (event) => {
       console.log(error);
     }
   }
+
 });
+
+
+document.addEventListener('click', async (event) => {
+  if (event.target.className === 'photka' && event.target.style.scale < 1.7) {
+    const newDiv = document.createElement('div');
+    newDiv.className = 'timeDiv';
+    const temp = event.target.closest('.detailInfo');
+    temp.insertAdjacentElement('afterbegin', newDiv)
+    console.log(event.target)
+    event.target.style.scale = 1.8;
+    event.target.style.zIndex = 100;
+    event.target.style.position = 'fixed'
+    event.target.style.top = '50%';
+    event.target.style.left = '50%';
+    event.target.style.marginTop = '-200px'
+    event.target.style.marginLeft = '-225px'
+    body.style.overflow = 'hidden';
+    body.style.height = '100%';
+  } else if (event.target.className === 'photka' && event.target.style.scale > 1.7 && event.target.style.scale < 1.9) {
+    const temp1 = event.target.closest('.detailInfo')
+    temp1.removeChild(temp1.firstChild)
+    event.target.style.scale = 1;
+    event.target.style.zIndex = 0;
+    event.target.style.position = 'relative'
+    event.target.style.top = '0%';
+    event.target.style.left = '0%';
+    event.target.style.marginTop = '0px'
+    event.target.style.marginLeft = '0px'
+    body.style.overflow = 'visible';
+    body.style.height = '0%';
+  }else if (event.target.className === 'timeDiv'){
+    const temp1 = event.target.nextSibling.firstChild;
+    console.log(temp1)
+    temp1.style.zIndex = 0;
+    temp1.style.scale = 1;
+    temp1.style.position = 'relative'
+    temp1.style.top = '0%';
+    temp1.style.left = '0%';
+    temp1.style.marginTop = '0px';
+    temp1.style.marginLeft = '0px';
+    body.style.overflow = 'visible';
+    body.style.height = '0%';
+    const temp2 = event.target.closest('.detailInfo')
+    temp2.removeChild(temp2.firstChild)
+  }
+})
+
