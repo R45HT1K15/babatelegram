@@ -1,33 +1,38 @@
+//подключаем рендер
 const render = require('../lib/render');
 
+//подключаем вьюшки
 const Babushkagram = require('../views/Babushkagram');
 const BabushkaNewPhoto = require('../views/BabushkaNewPhoto');
 const BabushkaPhotoDetail = require('../views/BabushkaPhotoDetail');
 const BabushkaProfile = require('../views/BabushkaProfile');
 const BabushkasPhoto = require('../views/BabushkasPhoto');
 
+//подключаем модели
 const { Picture, Grandparent, Like } = require('../db/models');
 
+//отрисовка главной страницы
 exports.babushkagram = async (req, res) => {
+  //забираем из сессии id пользователя
   const grandparent_id = req.session.user.id;
   try {
+    //находим все картинки и распологаем их по id
     const pictures = await Picture.findAll({
       include: Grandparent,
       order: [['id', 'DESC']],
       raw: true,
     });
+    //загружаем все лайки пользователей
     const likeOfUser = await Like.findAll({
       attributes: ['picture_id'],
       where: { grandparent_id },
       raw: true,
     });
-
+    //создание массива лайков
     const arrOfPicturesWhichUserLike = [];
     likeOfUser.forEach((el) =>
       arrOfPicturesWhichUserLike.push(el['picture_id'])
     );
-
-    // console.log('pictures------------------', pictures);
 
     const { user } = req.session;
     render(Babushkagram, { pictures, user, arrOfPicturesWhichUserLike }, res);
@@ -36,10 +41,12 @@ exports.babushkagram = async (req, res) => {
   }
 };
 
+//создание новой картинки с api'хой
 exports.babushkaNewPhoto = (req, res) => {
   render(BabushkaNewPhoto, {}, res);
 };
 
+//отрисовка личного профиля
 exports.babushkaProfile = async (req, res) => {
   try {
     const userid = req.session.user.id;
@@ -55,6 +62,7 @@ exports.babushkaProfile = async (req, res) => {
   }
 };
 
+//отрисовка определенной фотографии в профиле пользователя
 exports.BabushkaPhotoDetail = async (req, res) => {
   try {
     const id = req.params.id;
@@ -63,13 +71,12 @@ exports.BabushkaPhotoDetail = async (req, res) => {
     const like = await Like.findOne({
       where: { picture_id: id, grandparent_id: user.id },
     });
-
     render(BabushkaPhotoDetail, { picture, user, like }, res);
   } catch (error) {
     console.log('\x1b[31m', 'Error', error);
   }
 };
-
+//добавление лайков к фотографии
 exports.addLike = async (req, res) => {
   try {
     const { pictureId } = req.body;
@@ -96,6 +103,7 @@ exports.addLike = async (req, res) => {
   }
 };
 
+//удаление лайков с фотографии
 exports.deleteLike = async (req, res) => {
   try {
     const { pictureId } = req.body;
@@ -117,6 +125,7 @@ exports.deleteLike = async (req, res) => {
   } catch (error) {}
 };
 
+//удаление фотографии со страницы
 exports.deletePicture = async (req, res) => {
   try {
     const { pictureId } = req.body
