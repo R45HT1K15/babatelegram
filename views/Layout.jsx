@@ -157,14 +157,38 @@ function Layout({ children, user = '' }) {
           <div></div>
         )}
 
-        <script
-          src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-          crossorigin="anonymous"
-        ></script>
-      </body>
-    </html>
-  );
+  <footer>
+    {/* для бабки */}
+    <div className="btn-group" id='blackwood' role="group"  aria-label="Basic mixed styles example">
+      <a href="/babushkagram"><button className="left" type="button">Все фотокарточки</button></a>
+      <a href="/babuskagram/newPhoto"><button className="middle" type="button">Выложить фотокарточку</button></a>
+      <a href="/babushkagram/profile"><button className="right" type="button">Мой профиль</button></a>
+    </div>
+    </footer>
+
+    </>)
+     : (  <div className='container'>{children}</div>)}
+  { user?.role === 'vnukogram' ? 
+  (<>
+  <footer>
+    {/* для внука */}
+    <div className="btn-group" id='blackwood' role="group"  aria-label="Basic mixed styles example">
+      <a href="/vnukogram" ><button className="left" type="button">Фотки бабули</button></a>
+      <a href="/vnukogram/likes" ><button className="middle" type="button">Лайкнутые фотки</button></a>
+      <a href="/vnukogram/profile" ><button className="right" type="button">Мой профиль</button></a>
+    </div>
+  </footer>
+  </>)
+     : (<div></div>)}
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>
+);
+
 }
 
 module.exports = Layout;

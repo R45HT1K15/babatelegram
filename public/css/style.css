@@ -49,6 +49,16 @@ body {
   bottom: -75px;
   right: 300px;
 }
+
+.slovo{
+  display: flex;
+  gap: 30px;
+}
+.vnukDeleteBabushka{
+  display: flex;
+  gap: 30px;
+}
+
 h1 {
   font-size: 60px;
 }

@@ -65,7 +65,6 @@ const checkUserAndCreateSession = async (req, res) => {
       console.log('findVnuk ------------------------------', findVnuk)
       const isPasswValid = await bcrypt.compare(password, findVnuk.password);
       if (isPasswValid) {
-
         req.session.user = { id: findVnuk.id, name: findVnuk.fio, role, fio:findVnuk.fio, login: findVnuk.login}; 
         req.session.save(() => {
           res.redirect('/vnukogram');
