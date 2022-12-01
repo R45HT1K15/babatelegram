@@ -4,6 +4,7 @@ const Babushkagram = require('../views/Babushkagram');
 const BabushkaNewPhoto = require('../views/BabushkaNewPhoto');
 const BabushkaPhotoDetail = require('../views/BabushkaPhotoDetail');
 const BabushkaProfile = require('../views/BabushkaProfile');
+const BabushkasPhoto = require('../views/BabushkasPhoto');
 
 const { Picture, Grandparent, Like } = require('../db/models');
 
@@ -123,6 +124,36 @@ exports.deletePicture = async (req, res) => {
       where: {id: pictureId},
     })
     res.sendStatus(200);
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+exports.photoBabushki = async (req, res) => {
+  try {
+    const granduser = req.params;
+    const grandparent_id = req.session.user.id;
+    const { user } = req.session;
+    const picture = await Picture.findAll({include: Grandparent})
+
+    const likeOfUser = await Like.findAll({
+      attributes: ['picture_id'],
+      where: { grandparent_id },
+      raw: true,
+    });
+
+    const arrOfPicturesWhichUserLike = [];
+    likeOfUser.forEach((el) =>
+      arrOfPicturesWhichUserLike.push(el['picture_id'])
+    );
+
+    const filteredPicture = picture.filter((el) => el.Grandparent.login === granduser.name)
+    render(BabushkasPhoto, { user, filteredPicture, arrOfPicturesWhichUserLike }, res)
+
+
+    // console.log('filteredPicture', filteredPicture)
+    // console.log('filteredPicture', filteredPicture)
+
   } catch (error) {
     console.log(error)
   }

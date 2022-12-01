@@ -56,7 +56,7 @@ photos.forEach((photo) => {
 
       function setResult(text) {
         log.innerHTML = '';
-        text = text.replace(/\n\s*\n/g, '\n');
+        text = text.replace(/\n\s*\n<>"'-_=+.,@*/g, '\n');
         const pre = document.createElement('pre');
         const pauseBtn = document.createElement('button');
         const resumeBtn = document.createElement('button');
