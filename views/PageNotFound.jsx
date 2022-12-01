@@ -5,14 +5,14 @@ module.exports = function PageNotFound({}) {
 return (
 <Layout>
   <div>
-    <h2>Подробнее о сайте</h2>
-    <div className='mainPage'>
+    <div className='errorPage'>
+    <h2>Ошибка! Не беспокойтесь,</h2>
       <div>
-        что-то о сайте
+        <p>Вы просто допустили ошибку в написании сайта!</p>
+        <p>Просто нажмите вот <a href="/">СЮДА</a></p>
       </div>
-      <div className='authBtns'>
-        <a href="/signup"><button className="btnAuth">Регистрация</button></a>
-        <a href="/signin"><button className="btnAuth">Войти</button></a>
+      <div className='errorLogo'>
+        404
       </div>
     </div>
   </div>

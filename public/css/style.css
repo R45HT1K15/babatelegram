@@ -12,9 +12,17 @@ body {
   margin-top: 50px;
   width: 250px;
 }
+.errorPage{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.errorLogo{
+  font-size: 200px;
+}
 .hint1{
   position: fixed;
-  
   bottom: -75px;
   left: 300px;
 }
