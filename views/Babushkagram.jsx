@@ -6,12 +6,14 @@ module.exports = function Babushkagram({
   user,
   arrOfPicturesWhichUserLike,
 }) {
+  console.log('userbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb', user)
   return (
-    <Layout user={user}>
+    <Layout user = {user}>
       <script defer src="/js/babushkaLike.js"></script>
       <div className="photosPage">
         {pictures &&
           pictures.map((el) => (
+            
             <div className="photo" key={el.id}>
               <h2>Выложил(а) {el['Grandparent.fio']} </h2>
               <div className="detailInfo">

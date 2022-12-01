@@ -11,9 +11,12 @@ const {
   exitAndDestroySession
 } = require('../controllers/authControllers');
 
+const isAuth = require('../middleware/isAuth')
 
-route.get('/', (req, res) => {
-  render(Index, {}, res)
+
+route.get('/', isAuth, (req, res) => {
+  const  { user } = req.session
+  render(Index, { user }, res)
 })
 
 route.post('/signup', createUserAndSession);

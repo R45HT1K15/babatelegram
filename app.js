@@ -23,7 +23,7 @@ console.log('path.resolve(\'public\')', path.resolve('public'))
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use('./images', express.static(path.join(__dirname, 'images')))
+// app.use('./images', express.static(path.join(__dirname, 'images')))
 
 // настройка сессий
 const sessionConfig = {
@@ -41,7 +41,7 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 
 //роутеры
-app.use('/', indexRoutes); //обработка main, signin, signup, logout
+app.use('/',  indexRoutes); //обработка main, signin, signup, logout
 app.use('/babushkagram', babushkaRoutes); //обработка newPhoto, profile/:id, profile/:id/:imageid 
 app.use('/vnukogram', vnukRoutes); // обработка likes, profile
 app.use('/api', uploadRoute)

@@ -44,7 +44,7 @@ const checkUserAndCreateSession = async (req, res) => {
       const findBabushka = await Grandparent.findOne({ where: { login }})
       const isPasswValid = await bcrypt.compare(password, findBabushka.password);
       if (isPasswValid) {
-        req.session.user = { id: findBabushka.id, name: findBabushka.name, role, fio:findBabushka.fio }; 
+        req.session.user = { id: findBabushka.id, role, name:findBabushka.fio }; 
         req.session.save(() => {
           res.redirect('/babushkagram');
         })

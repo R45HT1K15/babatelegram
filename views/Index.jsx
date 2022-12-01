@@ -1,9 +1,9 @@
 const React = require('react');
 const Layout = require('./Layout');
 
-module.exports = function Index() {
+module.exports = function Index({ user }) {
 return (
-<Layout>
+<Layout user = { user }>
   <div>
     <h2>Подробнее о сайте</h2>
     <div className='mainPage'>
