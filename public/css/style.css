@@ -269,6 +269,10 @@ footer {
   margin-top: 20%;
 }
 
+.linkUser {
+  color: black;
+}
+
 @media (min-width: 768px) {
   .container {
     width: 750px;

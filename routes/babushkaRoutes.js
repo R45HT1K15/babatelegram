@@ -8,6 +8,7 @@ const {
   addLike,
   deleteLike,
   deletePicture,
+  photoBabushki,
 } = require('../controllers/babushkaControllers');
 
 const notAuth = require('../middleware/notAuth')
@@ -24,5 +25,7 @@ router.put('/like', addLike);
 router.delete('/like', deleteLike);
 
 router.delete('/onephoto', deletePicture);
+
+router.get('/:name', photoBabushki)
 
 module.exports = router;

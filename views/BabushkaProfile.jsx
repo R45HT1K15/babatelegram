@@ -8,7 +8,7 @@ return (
   <div className='userProfile'>
     <div className='hat'>
       <h1>{user.fio}</h1>
-      <a href="/logout"><button>logout</button></a>
+      <a href="/logout"><button>ВЫЙТИ(НЕ НАЖИМАТЬ!)</button></a>
     </div>
     <div className='photoTable'>
       {pictures && pictures.map((el) =>

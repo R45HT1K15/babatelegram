@@ -1,8 +1,6 @@
 const React = require('react');
 
 function Layout({ children, user = '' }) {
-  console.log('user-------------------------------------', user);
-  console.log('user+++++++++++++++++++++++++++++++++++++', user.name);
   return (
     <html lang="en">
       <head>
@@ -26,7 +24,6 @@ function Layout({ children, user = '' }) {
         <script defer src="/js/application.js"></script>
         <link rel="stylesheet" href="/css/style.css" />
       </head>
-
       <body>
         <header className="header">
           <div className="div_fotoProfile">
