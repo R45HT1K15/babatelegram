@@ -15,6 +15,9 @@ const vnukRoutes = require('./routes/vnukRoutes');
 const babushkaRoutes = require('./routes/babushkaRoutes');
 const uploadRoute = require('./routes/uploadRoute');
 
+// импорт рендера для отрисовки несуществующей страницы
+const render = require('./lib/render');
+
  // вызов функции проверки соединения с базоый данных
 dbCheck();
 
@@ -45,6 +48,10 @@ app.use('/',  indexRoutes); //обработка main, signin, signup, logout
 app.use('/babushkagram', babushkaRoutes); //обработка newPhoto, profile/:id, profile/:id/:imageid 
 app.use('/vnukogram', vnukRoutes); // обработка likes, profile
 app.use('/api', uploadRoute)
+app.get('*', (req, res) => {
+  res.redirect('/')
+  // render(PageNotFound, {}, res)
+})
 
 const PORT = process.env.PORT || 3100;
 app.listen(PORT, (err) => {
