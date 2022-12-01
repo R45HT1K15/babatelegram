@@ -10,13 +10,15 @@ const {
   deletePicture,
 } = require('../controllers/babushkaControllers');
 
-router.get('/', babushkagram);
+const notAuth = require('../middleware/notAuth')
 
-router.get('/newPhoto', babushkaNewPhoto);
+router.get('/', notAuth, babushkagram);
 
-router.get('/profile', babushkaProfile);
+router.get('/newPhoto', notAuth, babushkaNewPhoto);
 
-router.get('/profile/:id', BabushkaPhotoDetail);
+router.get('/profile', notAuth, babushkaProfile);
+
+router.get('/profile/:id', notAuth, BabushkaPhotoDetail);
 
 router.put('/like', addLike);
 router.delete('/like', deleteLike);
