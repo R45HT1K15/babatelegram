@@ -19,7 +19,7 @@ const createUserAndSession = async (req, res) => {
       //cоздание в бд пользователя
       const user = await Grandparent.create({ fio, login, password: hashedPassword, help: true });
       //создание сессии с данными: id, name, role
-      req.session.user = { id: user.id, name: user.fio, role };
+      req.session.user = { id: user.id, name: user.fio, role, login: user.login, help: user.help };
       req.session.save(() => {
         res.redirect('/babushkagram');
       })
@@ -28,7 +28,7 @@ const createUserAndSession = async (req, res) => {
     if (role === 'vnukogram') {
       const hashedPassword = await bcrypt.hash(password, 10);
       const user = await Grandchild.create({ fio, login, password: hashedPassword });
-      req.session.user = { id: user.id, name: user.fio, role };
+      req.session.user = { id: user.id, name: user.fio, role, login: user.login };
       req.session.save(() => {
         res.redirect('/vnukogram');
       })
@@ -50,7 +50,7 @@ const checkUserAndCreateSession = async (req, res) => {
       const isPasswValid = await bcrypt.compare(password, findBabushka.password);
       if (isPasswValid) {
         //создание сессии
-        req.session.user = { id: findBabushka.id, role, name:findBabushka.fio }; 
+        req.session.user = { id: findBabushka.id, role, name:findBabushka.fio, login: findBabushka.login, help: findBabushka.help }; 
         req.session.save(() => {
           res.redirect('/babushkagram');
         })
@@ -66,7 +66,7 @@ const checkUserAndCreateSession = async (req, res) => {
       const isPasswValid = await bcrypt.compare(password, findVnuk.password);
       if (isPasswValid) {
 
-        req.session.user = { id: findVnuk.id, name: findVnuk.fio, role, fio:findVnuk.fio}; 
+        req.session.user = { id: findVnuk.id, name: findVnuk.fio, role, fio:findVnuk.fio, login: findVnuk.login}; 
         req.session.save(() => {
           res.redirect('/vnukogram');
         })

@@ -80,7 +80,7 @@ function Layout({ children, user = '' }) {
                     Выложить фотокарточку
                   </button>
                 </a>
-                <a href="/babushkagram/profile">
+                <a href={`/babushkagram/profile/${user.login}`}>
                   <button className="right" type="button">
                     Мой профиль
                   </button>

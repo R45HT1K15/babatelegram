@@ -102,9 +102,14 @@ module.exports = function BabushkaPhotoDetail({ picture, user, like }) {
             </div>
             <div id="log" className="pictureText"></div>
           </div>
-        </div>
-        <button className="dangerDelete">удалить</button>
-      </div>
-    </Layout>
-  );
+    </div>
+    {user.login === picture.Grandparent.login ? (
+      <button className='dangerDelete'>удалить</button>
+    ):(
+      ''
+    )}
+  </div>
+</Layout>
+);
 };
+
