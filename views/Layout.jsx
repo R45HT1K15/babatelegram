@@ -26,13 +26,6 @@ function Layout({ children, user = '' }) {
       </head>
       <body>
         <header className="header">
-          <div className="div_fotoProfile">
-            <img
-              className="img_fotoProfile"
-              src="/img/logoProfile1.png"
-              alt="фото профиля"
-            />
-          </div>
           {user ? (
             <h1>Добро пожаловать в Babushkagram, {user.name}</h1>
           ) : (
