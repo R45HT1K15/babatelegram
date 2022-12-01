@@ -7,17 +7,28 @@ const {
   babushkaProfile,
   addLike,
   deleteLike,
+  deletePicture,
+  photoBabushki,
+  changeHelp,
 } = require('../controllers/babushkaControllers');
 
-router.get('/', babushkagram);
+const notAuth = require('../middleware/notAuth');
 
-router.get('/newPhoto', babushkaNewPhoto);
+router.get('/', notAuth, babushkagram);
 
-router.get('/profile', babushkaProfile);
+router.get('/newPhoto', notAuth, babushkaNewPhoto);
 
-router.get('/profile/:id', BabushkaPhotoDetail);
+router.get('/profile/:name', notAuth, babushkaProfile);
+
+router.get('/profile/:name/:id', notAuth, BabushkaPhotoDetail);
 
 router.put('/like', addLike);
 router.delete('/like', deleteLike);
+
+router.delete('/onephoto', deletePicture);
+
+router.get('/:name', photoBabushki);
+
+router.put('/help', changeHelp);
 
 module.exports = router;

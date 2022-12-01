@@ -7,17 +7,49 @@ body {
   align-items: center;
   margin-bottom: 100px;
 }
-.hint1{
+.dangerDelete {
+  background-color: red;
+  margin-top: 50px;
+  width: 250px;
+}
+.timeDiv{
+  z-index: 1;
   position: fixed;
-  
+  left: 0;
+  top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgba(12, 6, 1, 0.911);
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.errorPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.errorLogo {
+  font-size: 200px;
+}
+.hint1 {
+  position: fixed;
   bottom: -75px;
   left: 300px;
 }
-.hint2{
+.hint2 {
   position: fixed;
   bottom: -75px;
   right: 300px;
 }
+
 .slovo{
   display: flex;
   gap: 30px;
@@ -27,20 +59,20 @@ body {
   gap: 30px;
 }
 
-h1{
+h1 {
   font-size: 60px;
 }
-h2{
+h2 {
   font-size: 50px;
 }
-h3{
+h3 {
   font-size: 40px;
 }
-.hints{
+.hints {
   position: fixed;
   left: 90%;
 }
-a{
+a {
   text-decoration: none;
 }
 
@@ -62,11 +94,10 @@ option {
   background-color: rgb(250, 231, 177);
 }
 
-button{
+button {
   background-color: rgb(252, 180, 98);
   font-size: 45px;
 }
-
 
 .form-text {
   width: 600px;
@@ -116,7 +147,7 @@ button{
   border: none;
 }
 
-.hat{
+.hat {
   height: 250px;
   display: flex;
   align-items: center;
@@ -124,46 +155,81 @@ button{
 }
 
 .like {
-  margin-top: 45px;
-  margin-left: 45px;
   background-color: #fff8e7;
   border: none;
 }
+.model1,
+.model2 {
+  background-color: rgb(252, 180, 98);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  width: 350px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0 0 25px;
+  display: none;
+  animation: mymove 0.5s;
+}
 
-.detailPhotoInfo{
+@keyframes mymove {
+  from {
+    top: 50%;
+    scale: 0.01;
+  }
+  to {
+    top: 50%;
+    scale: 1;
+  }
+}
+.delete1 {
+  margin-right: 25px;
+  margin-top: 75px;
+  display: flex;
+  justify-content: space-around;
+}
+.detailPhotoInfo {
   position: relative;
   margin-top: 130px;
   margin-left: 267px;
   width: 603px;
   scale: 1.1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .photka {
   width: 450px;
   height: 400px;
+  border-radius: 5px;
 }
 
-.photoTable{
+.photoTable {
   width: 1100px;
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
 }
 
-.col{
+.col {
   flex: 0 0 0%;
   border: 1px solid rgb(252, 180, 98);
   border-radius: 5px;
 }
 
-.photkaProfile{
+.photkaProfile {
   width: 350px;
   height: 320px;
   border-radius: 5px;
 }
 
 .bi-heart {
-  color: red;
+  width: 85px;
+  height: 85px;
 }
 
 .bi-heart-fill {
@@ -173,14 +239,17 @@ button{
 footer {
   position: fixed;
   bottom: 0;
+  z-index: 5;
 }
 
 .photo {
   border: 1px solid black;
   border-radius: 5px;
+  width: auto;
+  padding: 20px;
 }
 
-.btnAuth{
+.btnAuth {
   border-radius: 5px;
 }
 .reg,
@@ -200,17 +269,33 @@ footer {
 .right {
   border-radius: 0px 15px 0px 0px;
 }
-
+.counts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
 .pictureText {
   display: none;
   font-size: 22px;
   min-height: 200px;
   scale: 0.8;
-  margin-left: -20px;
 }
 .text {
-  margin-left: -50px;
+  width: 700px;
+  height: 400px;
 }
+
+.center_form {
+  margin-top: 20%;
+}
+
+.linkUser {
+  color: black;
+}
+
+/* @media (min-width: 768px) and (max-width: 1024px) {
+} */
 
 @media (min-width: 768px) {
   .container {
