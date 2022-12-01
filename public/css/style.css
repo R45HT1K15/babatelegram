@@ -199,7 +199,8 @@ button {
 }
 
 .bi-heart {
-  color: red;
+  width: 85px;
+  height: 85px;
 }
 
 .bi-heart-fill {
@@ -260,6 +261,9 @@ footer {
 .linkUser {
   color: black;
 }
+
+/* @media (min-width: 768px) and (max-width: 1024px) {
+} */
 
 @media (min-width: 768px) {
   .container {
