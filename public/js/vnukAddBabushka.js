@@ -25,11 +25,16 @@ vnukAddBabushka.addEventListener('submit', async (event) => {
       const newBaba = `
       <div class='vnukDeleteBabushka'>
         <li>${babushka.fio}(${babushka.login})</li>
-        <button id=${babushka.id} data-delbaba=${babushka.id} type="submit" class="btnAuth">Удалить</button>
+        <button id=a${babushka.id} data-delbaba=${babushka.id} type="submit" class="btnAuth">Удалить</button>
       </div>
       `
+      const noRelatives = document.querySelector('.norelatives');
+      if (noRelatives) {
+        noRelatives.remove();
+      }
       listContainer?.insertAdjacentHTML('beforeend', newBaba);
-      const deleteBthLastBaba = listContainer.getElementById(`#${babushka.id}`);
+      const deleteBthLastBaba = listContainer.querySelector(`#a${babushka.id}`);
+      console.log('deleteBthLastBaba=======================', deleteBthLastBaba);
       deleteBabaEventListener(deleteBthLastBaba);
     }
 
@@ -51,10 +56,13 @@ function deleteBabaEventListener (btn) {
         },
         body: JSON.stringify({ babaID }),
       })
-      const { answer } = await response.json();
-      console.log('a ========================', { answer });
+      const { answer, anyBabushka } = await response.json();
       if (answer === 1) {
         btn.closest('.vnukDeleteBabushka').remove()
+      }
+      if (anyBabushka.Grandparents.length === 0) {
+      const noBaba = `<div class='norelatives'>Вы ни на кого не подписаны</div>`        
+      listContainer.insertAdjacentHTML('beforebegin', noBaba)
       }
     } catch (error) {
       console.log(error);

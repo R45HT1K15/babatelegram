@@ -1,8 +1,7 @@
 const React = require('react');
 const Layout = require('./Layout');
 
-module.exports = function Vnukoprofile({grandparents, user, myRelatives}) {
-
+module.exports = function Vnukoprofile({myRelatives, grandparents, user}) {
 return (
 <Layout user={user}>
 <script defer src="/js/vnukAddBabushka.js"></script>
@@ -30,12 +29,14 @@ return (
       <div className='listOfRelatives'>
         <div>Ваши родственники</div>
         <ol data-list>
-          {(myRelatives=== null) ? (<div>Вы ни на кого не подписаны</div>) 
+          {(myRelatives.Grandparents.length === 0 ) ? (
+          <div className='norelatives'>Вы ни на кого не подписаны</div>
+          ) 
           : 
-          (myRelatives.map((el) => (
+          (myRelatives.Grandparents.map((el) => (
             <div className='vnukDeleteBabushka'>
-                <li key={el.id}>{el['Grandparents.fio']}({el['Grandparents.login']})</li>
-                <button data-delbaba={el['Grandparents.id']} type="submit" className="btnAuth">Удалить</button>
+                <li key={myRelatives.id}>{el.fio}({el.login})</li>
+                <button data-delbaba={el.id} type="submit" className="btnAuth">Удалить</button>
             </div>)
           ))}
         </ol>

@@ -46,7 +46,7 @@ exports.vnukoprofile = async (req, res) => {
     try {
         const { user } = req.session;
         const grandparents = await Grandparent.findAll({ raw: true})
-        const myRelatives = await Grandchild.findAll({ where: { id: user.id }, include: Grandparent, raw: true })
+        const myRelatives = await Grandchild.findOne({ where: { id: user.id }, include: Grandparent })
         render(Vnukoprofile, { myRelatives, grandparents, user }, res);
         // console.log('myRelatives ==================', myRelatives);  
     } catch (error) {
@@ -72,8 +72,9 @@ exports.deleteBabushka = async(req, res) => {
   const { user } = req.session;
   try {
     const answer = await Grandparent_grandchild.destroy({where: {grandparent_id: babaID, grandchild_id: user.id}});
-    console.log('answer ==========', answer)
-    res.json({ answer });
+    const anyBabushka = await Grandchild.findOne({ where: { id: user.id }, include: Grandparent })
+
+    res.json({ answer, anyBabushka });
   }
   catch (error) {
     console.log(error)
