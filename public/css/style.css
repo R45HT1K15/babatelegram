@@ -199,7 +199,8 @@ button {
 }
 
 .bi-heart {
-  color: red;
+  width: 85px;
+  height: 85px;
 }
 
 .bi-heart-fill {
