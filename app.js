@@ -1,10 +1,18 @@
+//импорт сервера в константу
 const express = require('express'); 
-const app = express(); 
+//создание константы, в которой лежит сервер
+const app = express();
+//трансформация кода из старого в новый
 require('@babel/register');
+//logger для запросов
 const morgan = require('morgan'); 
+//константа пути
 const path = require('path');
+//скрытая информация
 require('dotenv').config(); 
+//импорт в константу
 const session = require('express-session');
+//база хранения сессий
 const FileStore = require('session-file-store')(session);
 //импорт вспомогательных ф-й
 const dbCheck = require('./db/dbCheck');
@@ -15,18 +23,22 @@ const vnukRoutes = require('./routes/vnukRoutes');
 const babushkaRoutes = require('./routes/babushkaRoutes');
 const uploadRoute = require('./routes/uploadRoute');
 const PageNotFound = require('./views/PageNotFound')
-// импорт рендера для отрисовки несуществующей страницы
+
+// импорт рендера для отрисовки любой страницы
 const render = require('./lib/render');
 
  // вызов функции проверки соединения с базоый данных
 dbCheck();
 
+//мидлварки
+//статичный путь до паблика
 app.use(express.static(path.resolve('public')));
-console.log('path.resolve(\'public\')', path.resolve('public'))
+//вывод в консоль
 app.use(morgan('dev'));
+//раскодировка body
 app.use(express.urlencoded({ extended: true }));
+//анпарсинг объектов
 app.use(express.json());
-// app.use('./images', express.static(path.join(__dirname, 'images')))
 
 // настройка сессий
 const sessionConfig = {
@@ -41,18 +53,26 @@ const sessionConfig = {
   },
 };
 
+//создание сессий по файлу sessionConfig
 app.use(session(sessionConfig));
 
 //роутеры
-app.use('/',  indexRoutes); //обработка main, signin, signup, logout
-app.use('/babushkagram', babushkaRoutes); //обработка newPhoto, profile/:id, profile/:id/:imageid 
-app.use('/vnukogram', vnukRoutes); // обработка likes, profile
-app.use('/api', uploadRoute)
+//обработка main, signin, signup, logout
+app.use('/',  indexRoutes); 
+//обработка newPhoto, profile/:id, profile/:id/:imageid 
+app.use('/babushkagram', babushkaRoutes);
+// обработка likes, profile
+app.use('/vnukogram', vnukRoutes);
+ //загрузка фотографий
+app.use('/api', uploadRoute);
+
+//рендер несуществующей сраницы
 app.get('*', (req, res) => {
   render(PageNotFound, {}, res)
 })
 
-const PORT = process.env.PORT || 3100;
+//подключение по порту указанному в env.PORT или 3000
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, (err) => {
   if (err) return console.log('Ошибка запуска сервера.', err.message)
   console.log(`Сервер запущен на http://localhost:${PORT} `);
