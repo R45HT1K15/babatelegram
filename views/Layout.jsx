@@ -34,32 +34,66 @@ function Layout({ children, user = '' }) {
         </header>
         {user?.role === 'babushkagram' ? (
           <>
-            <div className="hint1">
-              <h3>Все фотографии друзей</h3>
-              <img
-                src="/images/arrow1.png"
-                height="250px"
-                weight="250px"
-                alt=""
-              />
-            </div>
-            <div className="hint2">
-              <h3>
-                Ваши фотографии <br />
-                хранятся тут
-              </h3>
-              <img
-                src="/images/arrow2.png"
-                height="250px"
-                weight="250px"
-                alt=""
-              />
-            </div>
-            <div className="hints">
-              <button className="hintBtn">
-                <h3 className="offHint">Выключить подсказки!</h3>
-              </button>
-            </div>
+            {user.help === 'true' ? (
+              <>
+                <div className="hint1">
+                  <h3>Все фотографии друзей</h3>
+                  <img
+                    src="/images/arrow1.png"
+                    height="250px"
+                    weight="250px"
+                    alt=""
+                  />
+                </div>
+                <div className="hint2">
+                  <h3>
+                    Ваши фотографии <br />
+                    хранятся тут
+                  </h3>
+                  <img
+                    src="/images/arrow2.png"
+                    height="250px"
+                    weight="250px"
+                    alt=""
+                  />
+                </div>
+                <div className="hints">
+                  <button data-help={user.help} className="hintBtn">
+                    <h3 className="offHint">Выключить подсказки!</h3>
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="hint1" style={{ display: 'none' }}>
+                  <h3>Все фотографии друзей</h3>
+                  <img
+                    src="/images/arrow1.png"
+                    height="250px"
+                    weight="250px"
+                    alt=""
+                  />
+                </div>
+                <div className="hint2" style={{ display: 'none' }}>
+                  <h3>
+                    Ваши фотографии <br />
+                    хранятся тут
+                  </h3>
+                  <img
+                    src="/images/arrow2.png"
+                    height="250px"
+                    weight="250px"
+                    alt=""
+                  />
+                </div>
+                <div className="hints">
+                  <button data-help={user.help} className="hintBtn">
+                    <h3 className="offHint">Включить подсказки!</h3>
+                  </button>
+                </div>
+              </>
+            )}
+
             <div className="container">{children}</div>
 
             <footer>

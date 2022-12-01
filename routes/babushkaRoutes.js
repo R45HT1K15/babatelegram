@@ -9,9 +9,10 @@ const {
   deleteLike,
   deletePicture,
   photoBabushki,
+  changeHelp,
 } = require('../controllers/babushkaControllers');
 
-const notAuth = require('../middleware/notAuth')
+const notAuth = require('../middleware/notAuth');
 
 router.get('/', notAuth, babushkagram);
 
@@ -26,6 +27,8 @@ router.delete('/like', deleteLike);
 
 router.delete('/onephoto', deletePicture);
 
-router.get('/:name', photoBabushki)
+router.get('/:name', photoBabushki);
+
+router.put('/help', changeHelp);
 
 module.exports = router;

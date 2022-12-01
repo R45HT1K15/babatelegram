@@ -52,7 +52,7 @@ exports.babushkaProfile = async (req, res) => {
   try {
     const login = req.params.name;
     const { user } = req.session;
-    const grandUser = await Grandparent.findOne({where: { login: login }})
+    const grandUser = await Grandparent.findOne({ where: { login: login } });
     const nameUser = grandUser;
     const pictures = await Picture.findAll({
       where: { grandparent_id: grandUser.id },
@@ -70,7 +70,10 @@ exports.BabushkaPhotoDetail = async (req, res) => {
   try {
     const id = req.params.id;
     const { user } = req.session;
-    const picture = await Picture.findOne({ where: { id }, include: Grandparent });
+    const picture = await Picture.findOne({
+      where: { id },
+      include: Grandparent,
+    });
     const like = await Like.findOne({
       where: { picture_id: id, grandparent_id: user.id },
     });
@@ -147,7 +150,7 @@ exports.photoBabushki = async (req, res) => {
     const granduser = req.params;
     const grandparent_id = req.session.user.id;
     const { user } = req.session;
-    const picture = await Picture.findAll({include: Grandparent})
+    const picture = await Picture.findAll({ include: Grandparent });
 
     const likeOfUser = await Like.findAll({
       attributes: ['picture_id'],
@@ -160,14 +163,43 @@ exports.photoBabushki = async (req, res) => {
       arrOfPicturesWhichUserLike.push(el['picture_id'])
     );
 
-    const filteredPicture = picture.filter((el) => el.Grandparent.login === granduser.name)
-    render(BabushkasPhoto, { user, filteredPicture, arrOfPicturesWhichUserLike }, res)
-
+    const filteredPicture = picture.filter(
+      (el) => el.Grandparent.login === granduser.name
+    );
+    render(
+      BabushkasPhoto,
+      { user, filteredPicture, arrOfPicturesWhichUserLike },
+      res
+    );
 
     // console.log('filteredPicture', filteredPicture)
     // console.log('filteredPicture', filteredPicture)
-
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
+
+exports.changeHelp = async (req, res) => {
+  const { help } = req.body;
+  let answer;
+  if (help === 'true') {
+    answer = 'false';
+  } else {
+    answer = 'true';
+  }
+  const { user } = req.session;
+  try {
+    const a = await Grandparent.update(
+      { help: answer },
+      {
+        where: {
+          id: user.id,
+        },
+      }
+    );
+    req.session.user.help = answer;
+    res.json({ answer });
+  } catch (error) {
+    console.log(error);
+  }
+};
