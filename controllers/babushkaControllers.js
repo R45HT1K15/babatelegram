@@ -50,14 +50,17 @@ exports.babushkaNewPhoto = (req, res) => {
 //отрисовка личного профиля
 exports.babushkaProfile = async (req, res) => {
   try {
-    const userid = req.session.user.id;
+    const login = req.params.name;
     const { user } = req.session;
+    const grandUser = await Grandparent.findOne({where: { login: login }})
+    const nameUser = grandUser;
+    console.log('nameUser------------', nameUser)
     const pictures = await Picture.findAll({
-      where: { grandparent_id: userid },
+      where: { grandparent_id: grandUser.id },
       order: [['id', 'DESC']],
       include: Grandparent,
     });
-    render(BabushkaProfile, { pictures, user }, res);
+    render(BabushkaProfile, { pictures, user, nameUser }, res);
   } catch (error) {
     console.log('\x1b[31m', 'Error', error);
   }
@@ -68,7 +71,7 @@ exports.BabushkaPhotoDetail = async (req, res) => {
   try {
     const id = req.params.id;
     const { user } = req.session;
-    const picture = await Picture.findOne({ where: { id } });
+    const picture = await Picture.findOne({ where: { id }, include: Grandparent });
     const like = await Like.findOne({
       where: { picture_id: id, grandparent_id: user.id },
     });

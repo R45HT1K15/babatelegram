@@ -17,9 +17,9 @@ router.get('/', notAuth, babushkagram);
 
 router.get('/newPhoto', notAuth, babushkaNewPhoto);
 
-router.get('/profile', notAuth, babushkaProfile);
+router.get('/profile/:name', notAuth, babushkaProfile);
 
-router.get('/profile/:id', notAuth, BabushkaPhotoDetail);
+router.get('/profile/:name/:id', notAuth, BabushkaPhotoDetail);
 
 router.put('/like', addLike);
 router.delete('/like', deleteLike);

@@ -79,7 +79,11 @@ return (
         <div id="log" className="pictureText"></div>
       </div>
     </div>
-    <button className='dangerDelete'>удалить</button>
+    {user.login === picture.Grandparent.login ? (
+      <button className='dangerDelete'>удалить</button>
+    ):(
+      ''
+    )}
   </div>
 </Layout>
 );
