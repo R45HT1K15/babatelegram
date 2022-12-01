@@ -190,7 +190,7 @@ document.addEventListener('click', async (event) => {
         body: JSON.stringify({ pictureId }),
       });
       if (response.ok) {
-        window.location = "/babushkagram/profile"
+        window.location = "/babushkagram"
       }
     } catch (error) {
       console.log(error);
