@@ -235,7 +235,7 @@ footer {
 .photo {
   border: 1px solid black;
   border-radius: 5px;
-  width: 630px;
+  width: auto;
   padding: 20px;
 }
 
@@ -270,10 +270,10 @@ footer {
   font-size: 22px;
   min-height: 200px;
   scale: 0.8;
-  margin-left: -20px;
 }
 .text {
-  margin-left: -50px;
+  width: 700px;
+  height: 400px;
 }
 
 .center_form {
