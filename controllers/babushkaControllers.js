@@ -36,7 +36,8 @@ exports.babushkagram = async (req, res) => {
 };
 
 exports.babushkaNewPhoto = (req, res) => {
-  render(BabushkaNewPhoto, {}, res);
+  const { user } = req.session;
+  render(BabushkaNewPhoto, { user }, res);
 };
 
 exports.babushkaProfile = async (req, res) => {
@@ -118,12 +119,12 @@ exports.deleteLike = async (req, res) => {
 
 exports.deletePicture = async (req, res) => {
   try {
-    const { pictureId } = req.body
+    const { pictureId } = req.body;
     const qwer = await Picture.destroy({
-      where: {id: pictureId},
-    })
+      where: { id: pictureId },
+    });
     res.sendStatus(200);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
