@@ -45,18 +45,6 @@ hintBtn?.addEventListener('click', async (event) => {
     console.log(error);
   }
 });
-// hintBtn?.addEventListener('click', async (event) => {
-
-//   hint1.style.display === 'none'
-//     ? (hint1.style.display = 'block')
-//     : (hint1.style.display = 'none');
-//   hint2.style.display === 'none'
-//     ? (hint2.style.display = 'block')
-//     : (hint2.style.display = 'none');
-//   if (event.target.innerText === 'Включить подсказки!')
-//     event.target.innerText = 'Выключить подсказки!';
-//   else event.target.innerText = 'Включить подсказки!';
-// });
 
 const photos = document.querySelectorAll('.photo');
 
@@ -127,8 +115,6 @@ speakBtns.forEach((speakBtn) => {
 function initializeHandlers(buttons) {
   buttons.forEach((button) => {
     button.addEventListener('click', ({ target: { className } }) => {
-      console.log('button', button);
-
       switch (className) {
         case 'speak':
           if (!speechSynthesis.speaking) {
@@ -179,8 +165,7 @@ nope1?.addEventListener('click', (event) => {
   hints.style.opacity = 1;
   header.style.scale = 1;
   detailPhotoInfo.style.opacity = 1;
-
-  header.innerText = 'Добро пожаловать в Babushkagram';
+  header.innerText = 'Хорошо, что вы решили не удалять фотографию';
 });
 
 yeah1?.addEventListener('click', (event) => {
@@ -208,7 +193,7 @@ nope2?.addEventListener('click', (event) => {
   hints.style.opacity = 1;
   header.style.scale = 1;
   detailPhotoInfo.style.opacity = 1;
-  header.innerText = 'Добро пожаловать в Babushkagram';
+  header.innerText = 'Хорошо, что вы решили не удалять фотографию';
 });
 
 document.addEventListener('click', async (event) => {
@@ -235,12 +220,12 @@ document.addEventListener('click', async (event) => {
 });
 
 document.addEventListener('click', async (event) => {
+  console.log(event.target)
   if (event.target.className === 'photka' && event.target.style.scale < 1.7) {
     const newDiv = document.createElement('div');
     newDiv.className = 'timeDiv';
     const temp = event.target.closest('.detailInfo');
     temp.insertAdjacentElement('afterbegin', newDiv);
-    console.log(event.target);
     event.target.style.scale = 1.8;
     event.target.style.zIndex = 100;
     event.target.style.position = 'fixed';
@@ -253,7 +238,7 @@ document.addEventListener('click', async (event) => {
   } else if (
     event.target.className === 'photka' &&
     event.target.style.scale > 1.7 &&
-    event.target.style.scale < 1.9
+    event.target.style.scale < 2
   ) {
     const temp1 = event.target.closest('.detailInfo');
     temp1.removeChild(temp1.firstChild);
@@ -268,7 +253,6 @@ document.addEventListener('click', async (event) => {
     body.style.height = '0%';
   } else if (event.target.className === 'timeDiv') {
     const temp1 = event.target.nextSibling.firstChild;
-    console.log(temp1);
     temp1.style.zIndex = 0;
     temp1.style.scale = 1;
     temp1.style.position = 'relative';

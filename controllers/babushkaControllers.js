@@ -171,9 +171,6 @@ exports.photoBabushki = async (req, res) => {
       { user, filteredPicture, arrOfPicturesWhichUserLike },
       res
     );
-
-    // console.log('filteredPicture', filteredPicture)
-    // console.log('filteredPicture', filteredPicture)
   } catch (error) {
     console.log(error);
   }
