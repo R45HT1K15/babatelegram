@@ -2,7 +2,6 @@ const React = require('react');
 const Layout = require('./Layout');
 
 module.exports = function BabushkaProfile({pictures, user, nameUser}) {
-  console.log('nameUser', nameUser)
 return (
 <Layout user={user}>
   <div className='userProfile'>

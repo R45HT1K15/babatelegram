@@ -54,7 +54,6 @@ exports.babushkaProfile = async (req, res) => {
     const { user } = req.session;
     const grandUser = await Grandparent.findOne({where: { login: login }})
     const nameUser = grandUser;
-    console.log('nameUser------------', nameUser)
     const pictures = await Picture.findAll({
       where: { grandparent_id: grandUser.id },
       order: [['id', 'DESC']],
