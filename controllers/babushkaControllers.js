@@ -43,7 +43,8 @@ exports.babushkagram = async (req, res) => {
 
 //создание новой картинки с api'хой
 exports.babushkaNewPhoto = (req, res) => {
-  render(BabushkaNewPhoto, {}, res);
+  const { user } = req.session;
+  render(BabushkaNewPhoto, { user }, res);
 };
 
 //отрисовка личного профиля
@@ -128,16 +129,17 @@ exports.deleteLike = async (req, res) => {
 //удаление фотографии со страницы
 exports.deletePicture = async (req, res) => {
   try {
-    const { pictureId } = req.body
+    const { pictureId } = req.body;
     const qwer = await Picture.destroy({
-      where: {id: pictureId},
-    })
+      where: { id: pictureId },
+    });
     res.sendStatus(200);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
+//фильтруем страницу по фотографияем конкретного пользователя
 exports.photoBabushki = async (req, res) => {
   try {
     const granduser = req.params;
