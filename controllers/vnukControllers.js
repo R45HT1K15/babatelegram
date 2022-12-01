@@ -5,7 +5,9 @@ const Vnukolikes = require('../views/Vnukolikes');
 const Vnukoprofile = require('../views/Vnukoprofile');
 
 const { Picture, 
-    Grandparent 
+    Grandparent,
+    Grandchild,
+    Grandparent_grandchild
 } = require('../db/models');
 
 // const { Picture } = require('./db/models')
@@ -43,11 +45,37 @@ exports.vnukolikes = async (req, res) => {
 exports.vnukoprofile = async (req, res) => {
     try {
         const { user } = req.session;
-        console.log('user -----------------', {user})
         const grandparents = await Grandparent.findAll({ raw: true})
-        console.log('grandparents', grandparents)
-        render(Vnukoprofile, { grandparents, user }, res);
+        const myRelatives = await Grandchild.findAll({ where: { id: user.id }, include: Grandparent, raw: true })
+        render(Vnukoprofile, { myRelatives, grandparents, user }, res);
+        // console.log('myRelatives ==================', myRelatives);  
     } catch (error) {
         console.log('\x1b[31m', 'Error', error);
     }
 };
+
+exports.addBabushka = async (req, res) => {
+  const { id } = req.body;
+  try{
+    const { user } = req.session
+    const [a,b] = await Grandparent_grandchild.findOrCreate({where: {grandparent_id: id, grandchild_id: user.id}, raw:true})
+    const babushka = await Grandparent.findOne ({where: {id}})
+    res.json({ babushka, a, b })
+ }
+ catch (error) {
+  console.log(error)
+ }
+}
+
+exports.deleteBabushka = async(req, res) => {
+  const { babaID } = req.body;
+  const { user } = req.session;
+  try {
+    const answer = await Grandparent_grandchild.destroy({where: {grandparent_id: babaID, grandchild_id: user.id}});
+    console.log('answer ==========', answer)
+    res.json({ answer });
+  }
+  catch (error) {
+    console.log(error)
+   }
+}
