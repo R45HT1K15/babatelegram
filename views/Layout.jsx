@@ -1,6 +1,8 @@
 const React = require('react');
 
-function Layout({ children, user }) {
+function Layout({ children, user = '' }) {
+  console.log('user-------------------------------------', user)
+  console.log('user+++++++++++++++++++++++++++++++++++++', user.name)
 return (
 <html lang='en'>
 
@@ -22,7 +24,11 @@ return (
 
 <body>
   <header>
-    <h1>Добро пожаловать в Babushkagram</h1>
+    {user ? (
+      <h1>Добро пожаловать в Babushkagram, {user.name}</h1>
+    ) : (
+      <h1>Добро пожаловать в Babushkagram</h1>
+    )}
   </header>
   {user?.role === 'babushkagram' ? 
   (<>
