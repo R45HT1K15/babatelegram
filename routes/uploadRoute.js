@@ -5,7 +5,7 @@ const { Picture } = require('../db/models');
 
 
 route.post('/upload', fileMiddleware.single('file'), async (req, res) => {
-    console.log(req.files)
+    console.log('qwweqweqweqweqweqweqweqweqweqweqweqweqweqweqw', req.file)
     try {
         if(req.file) {
             const { user } = req.session;
