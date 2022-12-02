@@ -17,8 +17,8 @@ module.exports = function BabushkaNewPhoto({ myRelatives, user }) {
           </form>
 
           <div className="denger">
-            ВНИМАНИЕ! Будьте аккуратны, что выкладываете! За вами могут следить.
-            Посмотреть подписавшихся родственников можно здесь{' '}
+            ВНИМАНИЕ!!! Будьте аккуратны, выкладывая фото! За вами могут
+            следить. Посмотреть подписавшихся родственников можно здесь{' '}
             <button className="btnAuth" data-watch="watch" type="submit">
               СМОТРЕТЬ
             </button>
@@ -26,9 +26,7 @@ module.exports = function BabushkaNewPhoto({ myRelatives, user }) {
               <div>Ваши внучата:</div>
               <ol data-list>
                 {myRelatives.Grandchildren.length === 0 ? (
-                  <div className="norelatives">
-                    Пока никто не следит за вами
-                  </div>
+                  <div className="norelatives1">Слежки нет, все ок!</div>
                 ) : (
                   myRelatives.Grandchildren.map((el) => (
                     <div className="vnukDeleteBabushka">

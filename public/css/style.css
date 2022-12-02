@@ -295,8 +295,15 @@ footer {
 }
 .denger {
   padding-top: 50px;
+  color: rgb(210, 81, 30);
 }
 .linkUser {
+  color: black;
+}
+.oshibca{
+  color:red
+}
+.listOfRelatives {
   color: black;
 }
 

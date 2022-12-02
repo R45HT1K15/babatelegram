@@ -29,8 +29,8 @@ document.addEventListener('click', async (event) => {
       if (answer === 1) {
         event.target.closest('.vnukDeleteBabushka').remove();
         if (document.querySelectorAll('.vnukDeleteBabushka').length === 0) {
-          const notVnuck = ` <div class="norelatives">
-            На вас не подписан ни один внук
+          const notVnuck = ` <div class="norelatives1">
+          Слежки нет, все ок!
           </div>`;
           const ol = document.querySelector('[data-list]');
 
