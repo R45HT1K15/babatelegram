@@ -23,14 +23,11 @@ exports.vnukogram = async (req, res) => {
         const picture = []
         
         const choto = vnuchok.Grandparents.map(async (el) => {
-            const pic = await Picture.findAll({where: { grandparent_id: el.id }})
+            const pic = await Picture.findAll({where: { grandparent_id: el.id }, include: Grandparent})
             picture.push(pic)
         })
         await Promise.all(choto)
         const pictures = picture.flat()
-        console.log('picture-----------------*********************----------------------', pictures.flat())
-
-        // const picture = await Picture.findAll({where: {grandparent_id: 1}, include: Grandparent})
         const { user } = req.session
         render(Vnukogram, { pictures, user }, res);
     } catch (error) {
