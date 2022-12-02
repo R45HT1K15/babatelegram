@@ -220,7 +220,7 @@ document.addEventListener('click', async (event) => {
 });
 
 document.addEventListener('click', async (event) => {
-  console.log(event.target)
+  //console.log(event.target)
   if (event.target.className === 'photka' && event.target.style.scale < 1.7) {
     const newDiv = document.createElement('div');
     newDiv.className = 'timeDiv';

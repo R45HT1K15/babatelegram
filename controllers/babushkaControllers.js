@@ -9,7 +9,13 @@ const BabushkaProfile = require('../views/BabushkaProfile');
 const BabushkasPhoto = require('../views/BabushkasPhoto');
 
 //подключаем модели
-const { Picture, Grandparent, Like } = require('../db/models');
+const {
+  Picture,
+  Grandparent,
+  Like,
+  Grandchild,
+  Grandparent_grandchild,
+} = require('../db/models');
 
 //отрисовка главной страницы
 exports.babushkagram = async (req, res) => {
@@ -42,9 +48,15 @@ exports.babushkagram = async (req, res) => {
 };
 
 //создание новой картинки с api'хой
-exports.babushkaNewPhoto = (req, res) => {
+exports.babushkaNewPhoto = async (req, res) => {
   const { user } = req.session;
-  render(BabushkaNewPhoto, { user }, res);
+  const myRelatives = await Grandparent.findOne({
+    where: { id: user.id },
+    include: Grandchild,
+  });
+  console.log('++++++++++++myRelatives', myRelatives);
+
+  render(BabushkaNewPhoto, { user, myRelatives }, res);
 };
 
 //отрисовка личного профиля
@@ -195,6 +207,19 @@ exports.changeHelp = async (req, res) => {
       }
     );
     req.session.user.help = answer;
+    res.json({ answer });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+exports.deleteVnuck = async (req, res) => {
+  const { idvnuk } = req.body;
+  const { user } = req.session;
+  try {
+    const answer = await Grandparent_grandchild.destroy({
+      where: { grandparent_id: user.id, grandchild_id: idvnuk },
+    });
     res.json({ answer });
   } catch (error) {
     console.log(error);

@@ -8,13 +8,21 @@ module.exports = {
       [
         {
           login: 'Polina',
-          password: '1234',
-          fio: 'Полина ',
+          password:
+            '$2b$10$./AH8JaYbQAh/ec7BObit.Ff2ndozbuUfIvZQe1Y6uJKmw0GGF3V2',
+          fio: 'Полинка',
         },
         {
           login: 'Kate',
-          password: '1234',
-          fio: 'Катерина ',
+          password:
+            '$2b$10$./AH8JaYbQAh/ec7BObit.Ff2ndozbuUfIvZQe1Y6uJKmw0GGF3V2',
+          fio: 'Катерина',
+        },
+        {
+          login: 'Pavel',
+          password:
+            '$2b$10$./AH8JaYbQAh/ec7BObit.Ff2ndozbuUfIvZQe1Y6uJKmw0GGF3V2',
+          fio: 'Павлушка-хохотушка ',
         },
       ],
       {}
