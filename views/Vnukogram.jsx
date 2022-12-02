@@ -2,6 +2,7 @@ const React = require('react');
 const Layout = require('./Layout');
 
 module.exports = function Vnukogram({pictures, user}) {
+  console.log('pictures+++++++++++++++++++++++++', pictures)
   return (
   <Layout user={user}>
     <div>{user.name}, Ваша бабушка выложила</div>
