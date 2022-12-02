@@ -8,7 +8,7 @@ module.exports = {
       [
         {
           grandparent_id: 1,
-          grandchild_id: 2,
+          grandchild_id: 1,
         },
         {
           grandparent_id: 1,

@@ -10,6 +10,7 @@ const {
   deletePicture,
   photoBabushki,
   changeHelp,
+  deleteVnuck,
 } = require('../controllers/babushkaControllers');
 
 const notAuth = require('../middleware/notAuth');
@@ -30,5 +31,6 @@ router.delete('/onephoto', deletePicture);
 router.get('/:name', photoBabushki);
 
 router.put('/help', changeHelp);
+router.delete('/vnuck', deleteVnuck);
 
 module.exports = router;

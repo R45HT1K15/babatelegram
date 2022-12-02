@@ -4,6 +4,7 @@ const Layout = require('./Layout');
 module.exports = function BabushkaNewPhoto({ myRelatives, user }) {
   return (
     <Layout user={user}>
+      <script defer src="/js/babushkaDeleteVnuka.js"></script>
       <div className="wrapper">
         <div className="center_form">
           <form
@@ -18,24 +19,25 @@ module.exports = function BabushkaNewPhoto({ myRelatives, user }) {
           <div className="denger">
             ВНИМАНИЕ! Будьте аккуратны, что выкладываете! За вами могут следить.
             Посмотреть подписавшихся родственников можно здесь{' '}
-            <button className="watch btnAuth" type="submit">
+            <button className="btnAuth" data-watch="watch" type="submit">
               СМОТРЕТЬ
             </button>
-            <div className="listOfRelatives">
-              <div>Ваши внучата</div>
+            <div className="listOfRelatives" style={{ display: 'none' }}>
+              <div>Ваши внучата:</div>
               <ol data-list>
                 {myRelatives.Grandchildren.length === 0 ? (
                   <div className="norelatives">
-                    На вас не подписан ни один внук
+                    Пока никто не следит за вами
                   </div>
                 ) : (
                   myRelatives.Grandchildren.map((el) => (
-                    <div className="babushkaDeleteVnuck">
+                    <div className="vnukDeleteBabushka">
                       <li key={myRelatives.id}>
                         {el.fio}({el.login})
                       </li>
                       <button
-                        data-delbaba={el.id}
+                        data-idvnuk={el.id}
+                        data-vnuk="vnuk"
                         type="submit"
                         className="btnAuth"
                       >
