@@ -1,6 +1,7 @@
 const React = require('react');
 
 function Layout({ children, user = '' }) {
+  console.log('================================================', user.help)
   return (
     <html lang="en">
       <head>
@@ -34,9 +35,9 @@ function Layout({ children, user = '' }) {
         </header>
         {user?.role === 'babushkagram' ? (
           <>
-            {user.help === 'true' ? (
+            {user.help === 'true' || user.help === true ? (
               <>
-                <div className="hint1">
+                <div className="hint1"  style={{ display: 'block' }}>
                   <h3>Все фотографии друзей</h3>
                   <img
                     src="/images/arrow1.png"
@@ -45,7 +46,7 @@ function Layout({ children, user = '' }) {
                     alt=""
                   />
                 </div>
-                <div className="hint2">
+                <div className="hint2"  style={{ display: 'block' }}>
                   <h3>
                     Ваши фотографии <br />
                     хранятся тут

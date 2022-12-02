@@ -123,14 +123,19 @@ button {
 }
 
 .mainPage {
+  margin-top: 50px;
   display: flex;
   justify-content: space-between;
 }
-
+.mainLogo {
+  width: 350px;
+  height: 350px;
+}
 .authBtns {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 25px;
+  align-items: flex-end;
 }
 
 .photosPage {
@@ -252,7 +257,9 @@ footer {
   width: auto;
   padding: 20px;
 }
-
+.vnukophoto{
+  width: 490px;
+}
 .btnAuth {
   border-radius: 5px;
 }
